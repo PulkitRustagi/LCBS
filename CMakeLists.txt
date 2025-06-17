@@ -1,27 +1,31 @@
 project (Multi_objective_search)
 
-
 cmake_minimum_required (VERSION 2.6)
 
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_BUILD_TYPE Debug)
-SET(CMAKE_CXX_COMPILER "/usr/bin/g++")
+set(CMAKE_CXX_COMPILER "/usr/bin/g++")
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
-SET (CMAKE_LINKER  "/usr/bin/ld")
-
-SET(CMAKE_CXX_FLAGS  "${CMAKE_CXX_FLAGS} -g -Wall")
+set(CMAKE_LINKER "/usr/bin/ld")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -Wall")
 
 include_directories("inc")
 
 file(GLOB SOURCES "src/*.cpp" "src/HighLevel/*.cpp" "src/LowLevel/*.cpp" "src/LowLevel/Utils/*.cpp")
 
-# Find Boost
-find_package( Boost REQUIRED COMPONENTS program_options log thread filesystem system)
-include_directories( ${Boost_INCLUDE_DIRS} )
+# Remove simulate_algo.cpp to avoid duplicate main() error
+list(REMOVE_ITEM SOURCES ${CMAKE_SOURCE_DIR}/src/simulate_algo.cpp)
 
+# Find Boost
+find_package(Boost REQUIRED COMPONENTS program_options log thread filesystem system)
+include_directories(${Boost_INCLUDE_DIRS})
 
 message(${CMAKE_BINARY_DIR})
 
+# Main solver binary
 add_executable(bbmocbs_approx src/main.cpp ${SOURCES})
-
 target_link_libraries(bbmocbs_approx ${Boost_LIBRARIES})
+
+# Simulation automation binary
+add_executable(simulate_algo src/simulate_algo.cpp)
+target_link_libraries(simulate_algo ${Boost_LIBRARIES})

@@ -80,6 +80,7 @@ void epsSolver::NonDomVec(std::list<JointPathPair>& joint_path_list)
                 return;
             }
             bool is_dominated = false;
+            (void)is_dominated;
 			std::vector<size_t>  trun_vec({iter->first.at(1), iter->first.at(2)});
             if(domination_set.empty()){
                 domination_set.insert(trun_vec);
@@ -113,9 +114,9 @@ void epsSolver::NonDomVec(std::list<JointPathPair>& joint_path_list)
 
 OutputTuple epsSolver::run(std::vector<Edge>& edges, std::vector<std::pair<size_t, size_t>>& start_end, HSolutionID& hsolution_ids, std::vector<CostVector>& hsolution_costs, LoggerPtr& logger)
 {
-    std::chrono::_V2::system_clock::time_point   precise_start_time, precise_end_time;
+    std::chrono::high_resolution_clock::time_point   precise_start_time, precise_end_time;
     precise_start_time = std::chrono::high_resolution_clock::now();
-    std::chrono::_V2::system_clock::time_point t1, t2;
+    std::chrono::high_resolution_clock::time_point t1, t2;
     double duration;
 
     std::vector<CostVector> hsolution_apex_costs;
@@ -123,6 +124,7 @@ OutputTuple epsSolver::run(std::vector<Edge>& edges, std::vector<std::pair<size_
     
     double HLMergingTime = 0, LowLevelTime = 0, TotalTime;
     int ConflictSolvingNum = 0, SolutionNum = 0;
+    (void)SolutionNum;
 
     ConflictResolver conflict_resolver;
 
@@ -162,13 +164,13 @@ OutputTuple epsSolver::run(std::vector<Edge>& edges, std::vector<std::pair<size_
     HLMergingTime += duration;
 
     if(difftime(time(NULL), start_time) > TIME_LIMIT){
-        output << "FAIL" << std::endl 
-            << "apex cost:" << std::endl 
-            << std::endl 
-            << "real cost:" << std::endl 
-            << std::endl << std::endl << std::endl;
+        output << "FAIL" << std::endl ;
+            // << "apex cost:" << std::endl 
+            // << std::endl 
+            // << "real cost:" << std::endl 
+            // << std::endl << std::endl << std::endl;
 
-        return std::make_tuple(HLMergingTime, LowLevelTime, difftime(time(NULL), start_time), 0, 0);
+        return std::make_tuple(HLMergingTime, LowLevelTime, difftime(time(NULL), start_time), 0, 0, false);
     }
 
     root_node->cur_ids = root_node->all_jps.front().second;
@@ -511,36 +513,36 @@ OutputTuple epsSolver::run(std::vector<Edge>& edges, std::vector<std::pair<size_
     }else{
         output << "FAIL" << std::endl;
     }
-    output << "apex cost: " << std::endl;
-    int i = 0;
-    for(size_t num = 0; num < hsolution_apex_costs.size(); num ++){
-        if(i++ == 7){
-            output << std::endl;
-            i = 1;
-        }
-        if(DIM == 2){
-            output << "{" << hsolution_apex_costs.at(num).at(0) << ", " << hsolution_apex_costs.at(num).at(1);
-        }else{
-            output << "{" << hsolution_apex_costs.at(num).at(0) << ", " << hsolution_apex_costs.at(num).at(1) << ", " << hsolution_apex_costs.at(num).at(2);
-        }
-        output << "}, ";
-    }
-    output << std::endl;
-    output << "real cost: " << std::endl;
-    int j = 0;
-    for(size_t num = 0; num < hsolution_costs.size(); num ++){
-        if(j++ == 7){
-            output << std::endl;
-            j = 1;
-        }
-        if(DIM == 2){
-            output << "{" << hsolution_costs.at(num).at(0) << ", " << hsolution_costs.at(num).at(1);
-        }else{
-            output << "{" << hsolution_costs.at(num).at(0) << ", " << hsolution_costs.at(num).at(1) << ", " << hsolution_costs.at(num).at(2);
-        }
-        output << "}, ";
-    }
-    output << std::endl << std::endl;
+    // output << "apex cost: " << std::endl;
+    // int i = 0;
+    // for(size_t num = 0; num < hsolution_apex_costs.size(); num ++){
+    //     if(i++ == 7){
+    //         output << std::endl;
+    //         i = 1;
+    //     }
+    //     if(DIM == 2){
+    //         output << "{" << hsolution_apex_costs.at(num).at(0) << ", " << hsolution_apex_costs.at(num).at(1);
+    //     }else{
+    //         output << "{" << hsolution_apex_costs.at(num).at(0) << ", " << hsolution_apex_costs.at(num).at(1) << ", " << hsolution_apex_costs.at(num).at(2);
+    //     }
+    //     output << "}, ";
+    // }
+    // output << std::endl;
+    // output << "real cost: " << std::endl;
+    // int j = 0;
+    // for(size_t num = 0; num < hsolution_costs.size(); num ++){
+    //     if(j++ == 7){
+    //         output << std::endl;
+    //         j = 1;
+    //     }
+    //     if(DIM == 2){
+    //         output << "{" << hsolution_costs.at(num).at(0) << ", " << hsolution_costs.at(num).at(1);
+    //     }else{
+    //         output << "{" << hsolution_costs.at(num).at(0) << ", " << hsolution_costs.at(num).at(1) << ", " << hsolution_costs.at(num).at(2);
+    //     }
+    //     output << "}, ";
+    // }
+    // output << std::endl << std::endl;
 
-    return std::make_tuple(HLMergingTime, LowLevelTime, TotalTime, ConflictSolvingNum, hsolution_costs.size());
+    return std::make_tuple(HLMergingTime, LowLevelTime, TotalTime, ConflictSolvingNum, hsolution_costs.size(), is_success);
 }

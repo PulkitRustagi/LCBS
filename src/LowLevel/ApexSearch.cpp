@@ -69,9 +69,6 @@ void ApexSearch::operator()(PathSet& solution_ids, CostSet& solution_apex_costs,
         size_t source, size_t target, Heuristic &heuristic, VertexConstraint& vertex_constraints, EdgeConstraint& edge_constraints,
         unsigned int time_limit, VertexCAT& vertex_cat, EdgeCAT& edge_cat, std::unordered_map<int, int>& conflict_num_map) 
 {   
-    double time = 0;
-    double time2 = 0;
-    double time3 = 0;
     init_search();
     auto start_time = std::clock();
 

@@ -21,7 +21,7 @@ void kSolver::MergeJointPaths(HighLevelNodePtr node, int solution_num, double ma
     for(auto e : node->sop_waypoints){
         std::cout << e.size() << " ";
     }
-    auto _t1 = std::chrono::high_resolution_clock::now();
+    std::chrono::high_resolution_clock::time_point _t1 = std::chrono::high_resolution_clock::now();
     int dim = node->sop_apex.at(0)[0].size();
 
     std::pair<CostVector, int>  temp_apex_id;
@@ -76,7 +76,7 @@ void kSolver::MergeJointPaths(HighLevelNodePtr node, int solution_num, double ma
     for(auto& element : apex_idx_combos){
         node->all_jps.push_back(std::make_pair(element.first, ids_vector.at(element.second)));
     }
-    auto t2 = std::chrono::high_resolution_clock::now();
+    std::chrono::high_resolution_clock::time_point t2 = std::chrono::high_resolution_clock::now();
     double duration = (double)(std::chrono::duration_cast<std::chrono::microseconds>(t2 - _t1).count())/1000000.0;
     std::cout << " HLMergingTime = " << duration << std::endl;
     std::cout << node->all_jps.size() << std::endl;
@@ -232,6 +232,7 @@ void kSolver::MergeUntil(std::list<std::pair<CostVector, int>>& apex_idx_combos,
 
     apex_idx_combos.clear();
     int j = 0;
+    (void)j;
     for(int i = 0; i < total_num; i++){
         if(!valid_vector.at(i)){
             continue;
@@ -337,9 +338,9 @@ void kSolver::calculate_CAT(HighLevelNodePtr node, VertexCAT& vertex_cat, EdgeCA
 
 OutputTuple kSolver::run(std::vector<Edge>& edges, std::vector<std::pair<size_t, size_t>>& start_goal, HSolutionID& hsolution_ids, std::vector<CostVector>& hsolution_costs, LoggerPtr& logger)
 {
-    std::chrono::_V2::system_clock::time_point   precise_start_time, precise_end_time;
+    std::chrono::high_resolution_clock::time_point   precise_start_time, precise_end_time;
     precise_start_time = std::chrono::high_resolution_clock::now();
-    std::chrono::_V2::system_clock::time_point t1, t2;
+    std::chrono::high_resolution_clock::time_point t1, t2;
     double duration;
 
     std::vector<CostVector> hsolution_apex_costs;
@@ -347,6 +348,7 @@ OutputTuple kSolver::run(std::vector<Edge>& edges, std::vector<std::pair<size_t,
     
     double HLMergingTime = 0, LowLevelTime = 0, TotalTime;
     int ConflictSolvingNum = 0, SolutionNum = 0;
+    (void)SolutionNum;
 
     ConflictResolver conflict_resolver;
 
@@ -427,7 +429,7 @@ OutputTuple kSolver::run(std::vector<Edge>& edges, std::vector<std::pair<size_t,
             << "real cost:" << std::endl 
             << std::endl << std::endl << std::endl;
 
-        return std::make_tuple(HLMergingTime, LowLevelTime, difftime(time(NULL), start_time), 0, 0);
+        return std::make_tuple(HLMergingTime, LowLevelTime, difftime(time(NULL), start_time), 0, 0, is_success);
     }
 
     root_node->cur_ids = root_node->all_jps.front().second;
@@ -818,6 +820,7 @@ OutputTuple kSolver::run(std::vector<Edge>& edges, std::vector<std::pair<size_t,
     output << std::endl;
     output << "real cost: " << std::endl;
     int j = 0;
+    (void)j;
     for(size_t num = 0; num < hsolution_costs.size(); num ++){
         if(j++ == 7){
             output << std::endl;
@@ -835,5 +838,5 @@ OutputTuple kSolver::run(std::vector<Edge>& edges, std::vector<std::pair<size_t,
         output << "epsilon = " << EPS << std::endl << std::endl;
     }
 
-    return std::make_tuple(HLMergingTime, LowLevelTime, TotalTime, ConflictSolvingNum, hsolution_costs.size());
+    return std::make_tuple(HLMergingTime, LowLevelTime, TotalTime, ConflictSolvingNum, hsolution_costs.size(), is_success);
 }

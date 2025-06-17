@@ -11,6 +11,7 @@ ShortestPathHeuristic::ShortestPathHeuristic(size_t source, size_t graph_size, c
     : source(source), all_nodes(graph_size+1) {
     size_t num_of_objectives = adj_matrix.get_num_of_objectives();
     size_t i = 0;
+    (void)i;
 //     for (auto node_iter = this->all_nodes.begin(); node_iter != this->all_nodes.end(); node_iter++) {
 //         *node_iter = std::make_shared<Node>(i++, std::vector<size_t>(num_of_objectives, 0), std::vector<size_t>(num_of_objectives, MAX_COST));
 //  }
@@ -37,6 +38,8 @@ std::vector<size_t> ShortestPathHeuristic::operator()(size_t node_id, size_t par
     }else{
         return this->all_nodes.at(node_id).front()->h;
     }
+    // If no valid path was found, return an empty vector as a fallback
+    return std::vector<size_t>();
 }
 
 

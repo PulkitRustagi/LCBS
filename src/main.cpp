@@ -15,6 +15,8 @@
 #include "HighLevel/pexSolver.h"
 #include "HighLevel/kSolver.h"
 
+#include "HighLevel/lcbsSolver.h"
+
 #include <boost/program_options.hpp>
 #include <boost/tokenizer.hpp>
 
@@ -48,7 +50,7 @@ desc.add_options()
     ("turn_dim", po::value<int>()->default_value(-1), "dimension with turn cost")
     ("turn_cost", po::value<int>()->default_value(5), "extra cost for turn action")
     
-    ("solution_num,k", po::value<int>()->default_value(INT64_MAX), "number of solution")
+    ("solution_num,k", po::value<int>()->default_value(INT_MAX), "number of solution")
     ("time_limit,t", po::value<int>()->default_value(120), "cutoff time (seconds)")
     
     ("output_file,o", po::value<std::string>()->required(), "Name of the output file")
@@ -71,6 +73,7 @@ if (vm["logging_file"].as<std::string>() != ""){
 
 output.open(vm["output_file"].as<std::string>(), std::ios::app);
 output.seekp(0, std::ios::end);
+// output.open(vm["output_file"].as<std::string>(), std::ios::out | std::ios::trunc);
 /********************  INPUT CONFIG  *********************/
 // init preprocessor
 PreProcessor p;
@@ -82,6 +85,7 @@ MergingStrategy ms = vm["CB"].as<std::string>() == "true" ? MergingStrategy::CON
 bool if_eager = vm["eager"].as<std::string>() == "true" ? true : false;
 int turn_dim = vm["turn_dim"].as<int>();
 int turn_cost = vm["turn_cost"].as<int>();
+(void)turn_cost;
 
 // import map
 Map map;
@@ -113,6 +117,9 @@ if(vm["algorithm"].as<std::string>() == "BBMOCBS-eps"){
     h_solver = std::make_unique<kSolver>(map.graph_size, vm["agent_num"].as<int>(), Algorithm::BBMOCBS_K, if_eager, dim, turn_dim, vm["turn_cost"].as<int>(), vm["time_limit"].as<int>());
     ((kSolver*)h_solver.get())->set_merging_strategy(ms);
     ((kSolver*)h_solver.get())->set_solution_num(vm["solution_num"].as<int>());
+}else if(vm["algorithm"].as<std::string>() == "LCBS"){
+    h_solver = std::make_unique<LCBS>(map.graph_size, vm["agent_num"].as<int>(), Algorithm::LCBS_ALGO, if_eager, dim, turn_dim, vm["turn_cost"].as<int>(), vm["time_limit"].as<int>());
+    // h_solver = std::unique_ptr<HighLevelSolver>(new LCBS(map.graph_size, vm["agent_num"].as<int>(), Algorithm::LCBS, if_eager, dim, turn_dim, vm["turn_cost"].as<int>(), vm["time_limit"].as<int>()));
 }else{
     output << std::endl << std::endl << vm["algorithm"].as<std::string>() + " is not an allowed algorithm";
     exit(1);
@@ -127,6 +134,7 @@ auto result = h_solver->run(edges, start_goal, hsolution_ids, hsolution_costs, l
 
 double HLMergingTime = 0, LowLevelTime = 0, TotalTime = 0;
 int ConflictSolvingNum = 0, SolutionNum = 0;
+bool SuccessFlag = false;
 
 // success_num ++;
 HLMergingTime = std::get<0>(result);
@@ -134,14 +142,20 @@ LowLevelTime = std::get<1>(result);
 TotalTime = std::get<2>(result);
 ConflictSolvingNum = std::get<3>(result);
 SolutionNum = std::get<4>(result);
+SuccessFlag = std::get<5>(result);
 
 // output << std::endl;
 output << std::endl;
-output << "HLMergingTime = " << HLMergingTime << std::endl;
-output << "LowLevelTime = " << LowLevelTime << std::endl;
-output << "Total Time = " << TotalTime << std::endl;
-output << "ConflictSolvingNum = " << ConflictSolvingNum << std::endl;
-output << "SolutionNum = " << SolutionNum << std::endl;
+// output << "HLMergingTime = " << HLMergingTime << std::endl;
+// output << "LowLevelTime = " << LowLevelTime << std::endl;
+// output << "Total Time = " << TotalTime << std::endl;
+// output << "ConflictSolvingNum = " << ConflictSolvingNum << std::endl;
+// output << "SolutionNum = " << SolutionNum << std::endl;
+output << "Algorithm = " << vm["algorithm"].as<std::string>() << std::endl;
+output << "Agents = " << vm["agent_num"].as<int>() << std::endl;
+output << "SuccessFlag = " << (SuccessFlag ? "True" : "False") << std::endl;
+output << "------" << std::endl;
+std::cout << "SuccessFlag (Pullu-added) = " << (SuccessFlag ? "True" : "False") << std::endl;
 
 std::cout << "FINISH ONCE" << std::endl;
 

@@ -107,7 +107,7 @@ struct Node {
     };
 
     Node(size_t id, std::vector<size_t> g, std::vector<size_t> h, size_t t, int conflict_num, NodePtr parent=nullptr)
-        : id(id), g(g), h(h), f(g.size()), parent(parent), t(t), conflict_num(conflict_num) {
+        : id(id), g(g), h(h), f(g.size()), parent(parent), conflict_num(conflict_num), t(t) {
         for (int i = 0; i < g.size(); i++){
             f[i] = g[i] + h[i];
         }
@@ -154,8 +154,8 @@ struct Node {
 };
 
 
-enum Algorithm {BBMOCBS_EPS, BBMOCBS_PEX, BBMOCBS_K};
-enum LSolver {APEX, BOA, NAMOA};
+enum Algorithm {BBMOCBS_EPS, BBMOCBS_PEX, BBMOCBS_K, LCBS_ALGO};
+enum LSolver {APEX, BOA, NAMOA, LAstar};
 enum MergingStrategy {SMALLER_G2, RANDOM, MORE_SLACK, SMALLER_G2_FIRST, REVERSE_LEX, CONFLICT_BASED, NONE};
 
 struct ApexPathPair {
@@ -169,7 +169,7 @@ struct ApexPathPair {
     Heuristic& h;
 
     ApexPathPair(const NodePtr &apex, const NodePtr &path_node, Heuristic& h)
-        : apex(apex), path_node(path_node) , parent(path_node->parent), h(h), id(apex->id){};
+        : id(apex->id), apex(apex), path_node(path_node) , parent(path_node->parent), h(h){};
 
     ApexPathPair(const ApexPathPairPtr parent, const Edge& egde, int turn_mode, int turn_cost);
 
@@ -327,7 +327,7 @@ inline bool is_dominated(CostVector& a, CostVector& b, double eps=0)
     return true;
 }
 
-using OutputTuple = std::tuple<double, double, double, int, int>;
+using OutputTuple = std::tuple<double, double, double, int, int, bool>;
 
 
 #endif //UTILS_DEFINITIONS_H

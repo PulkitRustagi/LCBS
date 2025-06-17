@@ -12,6 +12,7 @@
 class pexSolver: public HighLevelSolver
 {
 public:
+    virtual ~pexSolver() = default;
     pexSolver(size_t graph_size, int agent_num, Algorithm algorithm, bool if_eager, int dim, int turn_dim, int turn_cost, int time_limit)
     : HighLevelSolver(graph_size, agent_num, algorithm, if_eager, dim, turn_dim, turn_cost, time_limit){}
     void set_merging_strategy(MergingStrategy ms){MS = ms;}

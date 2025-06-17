@@ -26,6 +26,7 @@ protected:
     int solution_size; // number of solutions
 
 public:
+    virtual ~HighLevelSolver() = default;
     HighLevelSolver(size_t graph_size, int agent_num, Algorithm algorithm, bool if_eager, int dim, int turn_dim, int turn_cost, int time_limit);
 
     virtual OutputTuple run(std::vector<Edge>& edges, std::vector<std::pair<size_t, size_t>>& start_end, HSolutionID& hsolution_ids, std::vector<CostVector>& hsolution_costs, LoggerPtr& logger) = 0;

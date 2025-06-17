@@ -241,6 +241,7 @@ void PreProcessor::read_scenario(std::string config_file, Map& map, int agent_nu
         std::cout << "here";
         std::ifstream Input(config_file);
         std::string a; double b; int c;
+        (void)b; (void)c;
 
         if(!Input.is_open()){
             std::cout << "Error: Unable to open configure file." << std::endl;

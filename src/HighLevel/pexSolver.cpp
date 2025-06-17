@@ -491,9 +491,9 @@ void pexSolver::post_process(std::vector<CostVector>& SOLUTIONS_apex, std::vecto
 OutputTuple pexSolver::run(std::vector<Edge>& edges, std::vector<std::pair<size_t, size_t>>& start_goal, HSolutionID& SOLUTIONS_waypoints, std::vector<CostVector>& SOLUTIONS_cost, LoggerPtr& logger)
 {
 // variables
-    std::chrono::_V2::system_clock::time_point   precise_start_time, precise_end_time;
+    std::chrono::high_resolution_clock::time_point   precise_start_time, precise_end_time;
     precise_start_time = std::chrono::high_resolution_clock::now();
-    std::chrono::_V2::system_clock::time_point t1, t2;
+    std::chrono::high_resolution_clock::time_point t1, t2;
     double duration;
 
     std::vector<CostVector> SOLUTIONS_apex;
@@ -501,6 +501,7 @@ OutputTuple pexSolver::run(std::vector<Edge>& edges, std::vector<std::pair<size_
     
     double HLMergingTime = 0, LowLevelTime = 0, TotalTime;
     int conflict_splits = 0, SolutionNum = 0;
+    (void)SolutionNum;
 
     ConflictResolver conflict_resolver;
     std::tuple<int, int, std::vector<size_t>, size_t> cft;
@@ -549,13 +550,13 @@ OutputTuple pexSolver::run(std::vector<Edge>& edges, std::vector<std::pair<size_
     }
 
     if(difftime(time(NULL), start_time) > TIME_LIMIT){
-        output << "FAIL" << std::endl 
-            << "apex cost:" << std::endl 
-            << std::endl 
-            << "real cost:" << std::endl 
-            << std::endl << std::endl << std::endl;
+        output << "FAIL" << std::endl ;
+            // << "apex cost:" << std::endl 
+            // << std::endl 
+            // << "real cost:" << std::endl 
+            // << std::endl << std::endl << std::endl;
 
-        return std::make_tuple(HLMergingTime, LowLevelTime, difftime(time(NULL), start_time), 0, 0);
+        return std::make_tuple(HLMergingTime, LowLevelTime, difftime(time(NULL), start_time), 0, 0, false);
     }
 
     node->cur_ids = node->all_jps.front().second;
@@ -714,36 +715,36 @@ OutputTuple pexSolver::run(std::vector<Edge>& edges, std::vector<std::pair<size_
     }else{
         output << "FAIL" << std::endl;
     }
-    output << "apex cost: " << std::endl;
-    int i = 0;
-    for(size_t num = 0; num < SOLUTIONS_apex.size(); num ++){
-        if(i++ == 7){
-            output << std::endl;
-            i = 1;
-        }
-        if(DIM == 2){
-            output << "{" << SOLUTIONS_apex.at(num).at(0) << ", " << SOLUTIONS_apex.at(num).at(1);
-        }else{
-            output << "{" << SOLUTIONS_apex.at(num).at(0) << ", " << SOLUTIONS_apex.at(num).at(1) << ", " << SOLUTIONS_apex.at(num).at(2);
-        }
-        output << "}, ";
-    }
-    output << std::endl;
-    output << "real cost: " << std::endl;
-    int j = 0;
-    for(size_t num = 0; num < SOLUTIONS_cost.size(); num ++){
-        if(j++ == 7){
-            output << std::endl;
-            j = 1;
-        }
-        if(DIM == 2){
-            output << "{" << SOLUTIONS_cost.at(num).at(0) << ", " << SOLUTIONS_cost.at(num).at(1);
-        }else{
-            output << "{" << SOLUTIONS_cost.at(num).at(0) << ", " << SOLUTIONS_cost.at(num).at(1) << ", " << SOLUTIONS_cost.at(num).at(2);
-        }
-        output << "}, ";
-    }
-    output << std::endl << std::endl;
+    // output << "apex cost: " << std::endl;
+    // int i = 0;
+    // for(size_t num = 0; num < SOLUTIONS_apex.size(); num ++){
+    //     if(i++ == 7){
+    //         output << std::endl;
+    //         i = 1;
+    //     }
+    //     if(DIM == 2){
+    //         output << "{" << SOLUTIONS_apex.at(num).at(0) << ", " << SOLUTIONS_apex.at(num).at(1);
+    //     }else{
+    //         output << "{" << SOLUTIONS_apex.at(num).at(0) << ", " << SOLUTIONS_apex.at(num).at(1) << ", " << SOLUTIONS_apex.at(num).at(2);
+    //     }
+    //     output << "}, ";
+    // }
+    // output << std::endl;
+    // output << "real cost: " << std::endl;
+    // int j = 0;
+    // for(size_t num = 0; num < SOLUTIONS_cost.size(); num ++){
+    //     if(j++ == 7){
+    //         output << std::endl;
+    //         j = 1;
+    //     }
+    //     if(DIM == 2){
+    //         output << "{" << SOLUTIONS_cost.at(num).at(0) << ", " << SOLUTIONS_cost.at(num).at(1);
+    //     }else{
+    //         output << "{" << SOLUTIONS_cost.at(num).at(0) << ", " << SOLUTIONS_cost.at(num).at(1) << ", " << SOLUTIONS_cost.at(num).at(2);
+    //     }
+    //     output << "}, ";
+    // }
+    // output << std::endl << std::endl;
 
-    return std::make_tuple(HLMergingTime, LowLevelTime, TotalTime, conflict_splits, SOLUTIONS_cost.size());
+    return std::make_tuple(HLMergingTime, LowLevelTime, TotalTime, conflict_splits, SOLUTIONS_cost.size(), is_success);
 }

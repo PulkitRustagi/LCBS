@@ -33,7 +33,9 @@ void single_run_map(size_t graph_size, AdjacencyMatrix& graph, Heuristic& heuris
 
     SolutionSet solution;
     int num_exp, num_gen;
+    (void)num_exp; (void)num_gen;
     auto runtime = std::clock();
+    (void)runtime;
 
     std::unique_ptr<AbstractSolver> solver;
     if (l_solver == LSolver::BOA){
