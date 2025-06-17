@@ -154,8 +154,8 @@ struct Node {
 };
 
 
-enum Algorithm {BBMOCBS_EPS, BBMOCBS_PEX, BBMOCBS_K, LCBS_ALGO};
-enum LSolver {APEX, BOA, NAMOA, LAstar};
+enum Algorithm {BBMOCBS_EPS, BBMOCBS_PEX, BBMOCBS_K, LCBS};
+enum LSolver {APEX, BOA, NAMOA};
 enum MergingStrategy {SMALLER_G2, RANDOM, MORE_SLACK, SMALLER_G2_FIRST, REVERSE_LEX, CONFLICT_BASED, NONE};
 
 struct ApexPathPair {

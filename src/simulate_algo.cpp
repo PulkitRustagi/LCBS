@@ -45,7 +45,7 @@ int count_successes(const std::string& output_file) {
 }
 
 int main() {
-    std::vector<std::string> algorithms = {"LCBS", "BBMOCBS-k -k 1", "BBMOCBS-eps", "BBMOCBS-pex"};
+    std::vector<std::string> algorithms = {"LCBS -k 1", "BBMOCBS-k -k 1", "BBMOCBS-eps", "BBMOCBS-pex"};
     std::vector<int> agent_counts = {5, 10, 15, 20, 25};
     int total_runs = 25;
 

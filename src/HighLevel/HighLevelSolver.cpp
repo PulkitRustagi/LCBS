@@ -21,8 +21,8 @@ HighLevelSolver::HighLevelSolver(size_t graph_size, int agent_num, Algorithm alg
         this->LSOLVER = LSolver::APEX;
     }else if(ALGORITHM == Algorithm::BBMOCBS_K){
         this->LSOLVER = LSolver::APEX;
-    }else if(ALGORITHM == Algorithm::LCBS_ALGO){
-        this->LSOLVER = LSolver::LAstar;
+    }else if(ALGORITHM == Algorithm::LCBS){
+        this->LSOLVER = LSolver::APEX;
     }else{
         assert(0);
     }
