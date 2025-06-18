@@ -49,7 +49,7 @@ int main() {
     std::vector<int> agent_counts = {5, 10, 15, 20, 25};
     int total_runs = 25;
 
-    std::ofstream summary("../summary_success_rate.txt", std::ios::app);
+    std::ofstream summary("../sim_data.txt", std::ios::app);
     summary.seekp(0, std::ios::end);
     summary << "Algorithm,Agents,SuccessCount,Total,SuccessRate\n\n";
 
