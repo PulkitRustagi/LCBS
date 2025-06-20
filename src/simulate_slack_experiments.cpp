@@ -10,7 +10,7 @@ std::string cost1 = "../example/random-3.cost";
 std::string cost2 = "../example/random-2.cost";
 std::string cost3 = "../example/random-1.cost";
 std::string scen_dir = "../example/scen-random";
-std::string output_file = "../output_temp.txt";
+std::string output_file = "../output_eps_vary_temp.txt";
 std::string binary = "./bin/bbmocbs_approx";
 
 std::string make_command(const std::string& scen_file, int agent_num, const std::string& algorithm) {
@@ -37,7 +37,7 @@ int count_successes(const std::string& output_file) {
     std::string line;
     int count = 0;
     while (std::getline(infile, line)) {
-        if (line.find("SuccessFlag = True") != std::string::npos) {
+        if (line.find("SUCCCESS") != std::string::npos) {
             count++;
         }
     }
@@ -45,11 +45,18 @@ int count_successes(const std::string& output_file) {
 }
 
 int main() {
-    std::vector<std::string> algorithms = {"LCBS -k 1", "BBMOCBS-k -k 1", "BBMOCBS-eps", "BBMOCBS-pex"};
-    std::vector<int> agent_counts = {5, 10, 15, 20, 25};
+    std::vector<std::string> algorithms = {"LCBS -k 1 --eps1 0.0 --eps2 0.0 --eps3 0.0",
+                                            "LCBS -k 1 --eps1 0.01 --eps2 0.01 --eps3 0.01",
+                                            "LCBS -k 1 --eps1 0.03 --eps2 0.03 --eps3 0.03",
+                                            "LCBS -k 1 --eps1 0.07 --eps2 0.07 --eps3 0.07",
+                                            "LCBS -k 1 --eps1 0.1 --eps2 0.1 --eps3 0.1",
+                                            "LCBS -k 1 --eps1 0.2 --eps2 0.2 --eps3 0.2",
+                                            "LCBS -k 1 --eps1 1.0 --eps2 1.0 --eps3 1.0"};
+
+    std::vector<int> agent_counts = {5, 10, 15, 20, 25, 30, 35};
     int total_runs = 25;
 
-    std::ofstream summary("../sim_data.txt", std::ios::app);
+    std::ofstream summary("../sim_eps_data.txt", std::ios::app);
     summary.seekp(0, std::ios::end);
     summary << "Algorithm,Agents,SuccessCount,Total,SuccessRate\n\n";
 

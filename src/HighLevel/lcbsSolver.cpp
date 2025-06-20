@@ -22,10 +22,17 @@ void lcbsSolver::MergeJointPaths(HighLevelNodePtr node,
                                  double /*max_eps not used any more*/)
 {
     /* ---- configuration of epsilons (can be class members) ---- */
-    constexpr double eps1 = 0.0;   // tolerance for cost[0]
-    constexpr double eps2 = 0.0;   // tolerance for cost[1]
-    constexpr double eps3 = 0.0;   // tolerance for cost[2]
+    // double eps1 = 0.1;   // tolerance for cost[0]
+    // double eps2 = 0.1;   // tolerance for cost[1]
+    // double eps3 = 0.1;   // tolerance for cost[2]
     /* ----------------------------------------------------------- */
+    // print eps1, eps2, eps3 in red color just for sanity check
+    // double eps1 = this->eps1;   // tolerance for cost[0]
+    // double eps2 = this->eps2;   // tolerance for cost[1]
+    // double eps3 = this->eps3;   // tolerance for cost[2]
+    std::cout << "\033[1;31m"
+              << "eps1 = " << eps1 << ", eps2 = " << eps2 << ", eps3 = " << eps3
+              << "\033[0m" << std::endl;
 
     std::chrono::high_resolution_clock::time_point _t1 = std::chrono::high_resolution_clock::now();
 
@@ -405,7 +412,7 @@ OutputTuple lcbsSolver::run(std::vector<Edge>& edges, std::vector<std::pair<size
         heuristics.at(i) = std::bind( &ShortestPathHeuristic::operator(), sp_heuristic, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3);
     }
 
-//  initialize open_list
+    //  initialize open_list
     HighLevelNodePtr root_node = std::make_shared<HighLevelNode>(AGENT_NUM);
 
     for(size_t i = 0; i < AGENT_NUM; i ++){
@@ -836,7 +843,7 @@ OutputTuple lcbsSolver::run(std::vector<Edge>& edges, std::vector<std::pair<size
     //     }
     // }
 
-    if(is_success){
+    if(is_success | hsolution_apex_costs.size() != 0){
         output << "SUCCESS" << std::endl;
     }else{
         output << "FAIL" << std::endl;

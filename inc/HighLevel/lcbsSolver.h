@@ -32,5 +32,11 @@ public:
     : HighLevelSolver(graph_size, agent_num, algorithm, if_eager, dim, turn_dim, turn_cost, time_limit){}
     void set_merging_strategy(MergingStrategy ms){MS = ms;}
     void set_solution_num(int solution_num){SOLUTION_NUM = solution_num;}
+    void set_eps(double eps1_ = 0.0, double eps2_ = 0.0, double eps3_ = 0.0)
+    {
+        eps1 = eps1_;
+        eps2 = eps2_;
+        eps3 = eps3_;
+    }
     OutputTuple run(std::vector<Edge>& edges, std::vector<std::pair<size_t, size_t>>& start_end, HSolutionID& hsolution_ids, std::vector<CostVector>& hsolution_costs, LoggerPtr& logger) override;
 };
