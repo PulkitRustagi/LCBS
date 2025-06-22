@@ -1,53 +1,58 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
+import re
 
-# Load your data file
-data = pd.read_csv("sim_data_eps_vary.txt") 
+# Load the data from a file
+data = pd.read_csv("sim_data_eps_vary_test.txt")  # <-- Update this filename as needed
 
-# Function to convert raw algorithm string to LaTeX-friendly label
-def format_algo_label(raw_label):
-    # Example: 'LCBS (\epsilon = 0.05)' → 'LCBS ($\\epsilon=0.05$)'
-    import re
-    match = re.search(r'LCBS \(\\epsilon = ([\d\.]+)\)', raw_label)
+# Format labels: LCBS (ε=...) in LaTeX
+def format_label(algo):
+    match = re.search(r'LCBS \(\\epsilon = ([\d\.]+)\)', algo)
     if match:
-        eps_value = match.group(1)
-        return rf"$\epsilon={eps_value}$"
-    return raw_label
+        return rf"LCBS ($\epsilon={match.group(1)}$)"
+    return algo  # BBMOCBS variants stay unchanged
 
-# Apply the label formatting
-data['FormattedLabel'] = data['Algorithm'].apply(format_algo_label)
+data['FormattedLabel'] = data['Algorithm'].apply(format_label)
+unique_algos = data['FormattedLabel'].unique()
 
-# Plot setup
-plt.figure(figsize=(6.5, 3))
-unique_labels = data['FormattedLabel'].unique()
+# Styles
+colors = plt.cm.tab10(np.linspace(0, 1, len(unique_algos)))
+markers = ['o', 's', '^', 'v', 'D', 'P', '*', 'x', '+']
+bbmocbs_styles = ['dotted']
 
-# Marker and style settings
-markers = ['o', 's', '^', 'v', 'D', 'P', '*']
-linestyles = ['solid', 'dashed', 'dotted', 'dashdot']
-colors = plt.cm.viridis_r(np.linspace(0, 1, len(unique_labels)))
+# Initialize plot
+plt.figure(figsize=(7.5, 4))
+bbmocbs_style_idx = 0
 
-# Plot each epsilon configuration
-for idx, label in enumerate(unique_labels):
+for idx, label in enumerate(unique_algos):
     subset = data[data['FormattedLabel'] == label]
+
+    if "LCBS" in label:
+        linestyle = 'solid'
+    else:
+        linestyle = bbmocbs_styles[bbmocbs_style_idx % len(bbmocbs_styles)]
+        bbmocbs_style_idx += 1
+
     plt.plot(
         subset['Agents'],
         subset['SuccessRate'],
         label=label,
+        color=colors[idx % len(colors)],
         marker=markers[idx % len(markers)],
-        linestyle=linestyles[idx % len(linestyles)],
-        color=colors[idx]
+        linestyle=linestyle,
+        linewidth=1.8
     )
 
-# Axis and layout styling
+# Axis and style
 plt.xlabel("Agents")
 plt.ylabel("Success Rate")
 plt.ylim(-0.05, 1.05)
-plt.title("Effect of Varying $\\epsilon$ on Success Rate (LCBS)")
-plt.grid(True)
-# plt.legend(title="LCBS $\\epsilon$:", loc="center left", bbox_to_anchor=(1, 0.5))
+plt.grid(True, linestyle='--', alpha=0.5)
+plt.legend(title="Algorithm", loc="center left", bbox_to_anchor=(1, 0.5), fontsize="small")
+plt.title("BASELINE DOMINATION PLOT")
 plt.tight_layout()
 
 # Save and show
-plt.savefig("PLOT_LCBS_EPSILON_VARY.png", dpi=300)
+plt.savefig("LCBS_VARIANT_DOMINATION.png", dpi=300)
 plt.show()

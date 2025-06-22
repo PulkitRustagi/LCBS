@@ -46,5 +46,5 @@ plt.legend(title="success rate:", loc="center left", bbox_to_anchor=(1, 0.5))
 plt.tight_layout()
 
 # Save plot
-plt.savefig("success_rate_simulation_plot.png", dpi=300)
+plt.savefig("success_rate_simulation_plot_test.png", dpi=300)
 plt.show()
