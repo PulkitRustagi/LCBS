@@ -37,7 +37,7 @@ int count_successes(const std::string& output_file) {
     std::string line;
     int count = 0;
     while (std::getline(infile, line)) {
-        if (line.find("SUCCCESS") != std::string::npos) {
+        if (line.find("SUCCESS") != std::string::npos) {
             count++;
         }
     }

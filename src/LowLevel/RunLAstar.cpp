@@ -54,7 +54,7 @@ bool RunLAstar::search(PathSet& waypoints,
     open.push({source_, init_g, h, {source_}});
     best_cost[source_] = init_g;
 
-    size_t timestep = 0;
+    // size_t timestep = 0;
     int solution_id = 0; // since LAstar is programmed to have just a single solution
     while (!open.empty()) {
         Node curr = open.top(); open.pop();

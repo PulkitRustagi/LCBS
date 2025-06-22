@@ -1,0 +1,58 @@
+Algorithm,Agents,SuccessCount,Total,SuccessRate
+
+LCBS -k 1 --eps1 5.0 --eps2 5.0 --eps3 5.0,5,25,25,1
+LCBS -k 1 --eps1 5.0 --eps2 5.0 --eps3 5.0,10,25,25,1
+LCBS -k 1 --eps1 5.0 --eps2 5.0 --eps3 5.0,15,25,25,1
+LCBS -k 1 --eps1 5.0 --eps2 5.0 --eps3 5.0,20,22,25,0.88
+LCBS -k 1 --eps1 5.0 --eps2 5.0 --eps3 5.0,25,16,25,0.64
+LCBS -k 1 --eps1 5.0 --eps2 5.0 --eps3 5.0,30,8,25,0.32
+LCBS -k 1 --eps1 5.0 --eps2 5.0 --eps3 5.0,35,0,25,0
+
+LCBS -k 1 --eps1 1.0 --eps2 1.0 --eps3 1.0,5,25,25,1
+LCBS -k 1 --eps1 1.0 --eps2 1.0 --eps3 1.0,10,25,25,1
+LCBS -k 1 --eps1 1.0 --eps2 1.0 --eps3 1.0,15,25,25,1
+LCBS -k 1 --eps1 1.0 --eps2 1.0 --eps3 1.0,20,22,25,0.88
+LCBS -k 1 --eps1 1.0 --eps2 1.0 --eps3 1.0,25,16,25,0.64
+LCBS -k 1 --eps1 1.0 --eps2 1.0 --eps3 1.0,30,8,25,0.32
+LCBS -k 1 --eps1 1.0 --eps2 1.0 --eps3 1.0,35,0,25,0
+
+LCBS -k 1 --eps1 0.5 --eps2 0.5 --eps3 0.5,5,25,25,1
+LCBS -k 1 --eps1 0.5 --eps2 0.5 --eps3 0.5,10,25,25,1
+LCBS -k 1 --eps1 0.5 --eps2 0.5 --eps3 0.5,15,25,25,1
+LCBS -k 1 --eps1 0.5 --eps2 0.5 --eps3 0.5,20,21,25,0.84
+LCBS -k 1 --eps1 0.5 --eps2 0.5 --eps3 0.5,25,16,25,0.64
+LCBS -k 1 --eps1 0.5 --eps2 0.5 --eps3 0.5,30,8,25,0.32
+LCBS -k 1 --eps1 0.5 --eps2 0.5 --eps3 0.5,35,0,25,0
+
+LCBS -k 1 --eps1 0.1 --eps2 0.1 --eps3 0.1,5,25,25,1
+LCBS -k 1 --eps1 0.1 --eps2 0.1 --eps3 0.1,10,25,25,1
+LCBS -k 1 --eps1 0.1 --eps2 0.1 --eps3 0.1,15,25,25,1
+LCBS -k 1 --eps1 0.1 --eps2 0.1 --eps3 0.1,20,21,25,0.84
+LCBS -k 1 --eps1 0.1 --eps2 0.1 --eps3 0.1,25,16,25,0.64
+LCBS -k 1 --eps1 0.1 --eps2 0.1 --eps3 0.1,30,8,25,0.32
+LCBS -k 1 --eps1 0.1 --eps2 0.1 --eps3 0.1,35,0,25,0
+
+LCBS -k 1 --eps1 0.05 --eps2 0.05 --eps3 0.05,5,25,25,1
+LCBS -k 1 --eps1 0.05 --eps2 0.05 --eps3 0.05,10,25,25,1
+LCBS -k 1 --eps1 0.05 --eps2 0.05 --eps3 0.05,15,25,25,1
+LCBS -k 1 --eps1 0.05 --eps2 0.05 --eps3 0.05,20,22,25,0.88
+LCBS -k 1 --eps1 0.05 --eps2 0.05 --eps3 0.05,25,15,25,0.6
+LCBS -k 1 --eps1 0.05 --eps2 0.05 --eps3 0.05,30,7,25,0.28
+LCBS -k 1 --eps1 0.05 --eps2 0.05 --eps3 0.05,35,0,25,0
+
+LCBS -k 1 --eps1 0.03 --eps2 0.03 --eps3 0.03,5,25,25,1
+LCBS -k 1 --eps1 0.03 --eps2 0.03 --eps3 0.03,10,25,25,1
+LCBS -k 1 --eps1 0.03 --eps2 0.03 --eps3 0.03,15,25,25,1
+LCBS -k 1 --eps1 0.03 --eps2 0.03 --eps3 0.03,20,22,25,0.88
+LCBS -k 1 --eps1 0.03 --eps2 0.03 --eps3 0.03,25,17,25,0.68
+LCBS -k 1 --eps1 0.03 --eps2 0.03 --eps3 0.03,30,8,25,0.32
+LCBS -k 1 --eps1 0.03 --eps2 0.03 --eps3 0.03,35,0,25,0
+
+LCBS -k 1 --eps1 0 --eps2 0 --eps3 0,5,25,25,1
+LCBS -k 1 --eps1 0 --eps2 0 --eps3 0,10,25,25,1
+LCBS -k 1 --eps1 0 --eps2 0 --eps3 0,15,25,25,1
+LCBS -k 1 --eps1 0 --eps2 0 --eps3 0,20,22,25,0.88
+LCBS -k 1 --eps1 0 --eps2 0 --eps3 0,25,16,25,0.64
+LCBS -k 1 --eps1 0 --eps2 0 --eps3 0,30,8,25,0.32
+LCBS -k 1 --eps1 0 --eps2 0 --eps3 0,35,0,25,0
+

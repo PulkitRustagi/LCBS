@@ -1,0 +1,50 @@
+Algorithm,Agents,SuccessCount,Total,SuccessRate
+
+LCBS (\epsilon = 5),5,25,25,1
+LCBS (\epsilon = 5),10,25,25,1
+LCBS (\epsilon = 5),15,25,25,1
+LCBS (\epsilon = 5),20,22,25,0.88
+LCBS (\epsilon = 5),25,16,25,0.64
+LCBS (\epsilon = 5),30,8,25,0.32
+LCBS (\epsilon = 5),35,0,25,0
+
+LCBS (\epsilon = 1),5,25,25,1
+LCBS (\epsilon = 1),10,25,25,1
+LCBS (\epsilon = 1),15,25,25,1
+LCBS (\epsilon = 1),20,22,25,0.88
+LCBS (\epsilon = 1),25,16,25,0.64
+LCBS (\epsilon = 1),30,8,25,0.32
+LCBS (\epsilon = 1),35,0,25,0
+
+LCBS (\epsilon = 0.5),5,25,25,1
+LCBS (\epsilon = 0.5),10,25,25,1
+LCBS (\epsilon = 0.5),15,25,25,1
+LCBS (\epsilon = 0.5),20,21,25,0.84
+LCBS (\epsilon = 0.5),25,16,25,0.64
+LCBS (\epsilon = 0.5),30,8,25,0.32
+LCBS (\epsilon = 0.5),35,0,25,0
+
+LCBS (\epsilon = 0.1),5,25,25,1
+LCBS (\epsilon = 0.1),10,25,25,1
+LCBS (\epsilon = 0.1),15,25,25,1
+LCBS (\epsilon = 0.1),20,21,25,0.84
+LCBS (\epsilon = 0.1),25,16,25,0.64
+LCBS (\epsilon = 0.1),30,8,25,0.32
+LCBS (\epsilon = 0.1),35,0,25,0
+
+LCBS (\epsilon = 0.05),5,25,25,1
+LCBS (\epsilon = 0.05),10,25,25,1
+LCBS (\epsilon = 0.05),15,25,25,1
+LCBS (\epsilon = 0.05),20,22,25,0.88
+LCBS (\epsilon = 0.05),25,15,25,0.6
+LCBS (\epsilon = 0.05),30,7,25,0.28
+LCBS (\epsilon = 0.05),35,0,25,0
+
+LCBS (\epsilon = 0.03),5,25,25,1
+LCBS (\epsilon = 0.03),10,25,25,1
+LCBS (\epsilon = 0.03),15,25,25,1
+LCBS (\epsilon = 0.03),20,22,25,0.88
+LCBS (\epsilon = 0.03),25,17,25,0.68
+LCBS (\epsilon = 0.03),30,8,25,0.32
+LCBS (\epsilon = 0.03),35,0,25,0
+

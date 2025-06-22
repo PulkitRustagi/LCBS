@@ -10,7 +10,7 @@ std::string cost1 = "../example/random-3.cost";
 std::string cost2 = "../example/random-2.cost";
 std::string cost3 = "../example/random-1.cost";
 std::string scen_dir = "../example/scen-random";
-std::string output_file = "../output_eps_vary_temp.txt";
+std::string output_file = "../vary_slack_temp.txt";
 std::string binary = "./bin/bbmocbs_approx";
 
 std::string make_command(const std::string& scen_file, int agent_num, const std::string& algorithm) {
@@ -37,7 +37,7 @@ int count_successes(const std::string& output_file) {
     std::string line;
     int count = 0;
     while (std::getline(infile, line)) {
-        if (line.find("SUCCCESS") != std::string::npos) {
+        if (line.find("SUCCESS") != std::string::npos) {
             count++;
         }
     }
@@ -45,13 +45,13 @@ int count_successes(const std::string& output_file) {
 }
 
 int main() {
-    std::vector<std::string> algorithms = {"LCBS -k 1 --eps1 0.0 --eps2 0.0 --eps3 0.0",
-                                            "LCBS -k 1 --eps1 0.01 --eps2 0.01 --eps3 0.01",
-                                            "LCBS -k 1 --eps1 0.03 --eps2 0.03 --eps3 0.03",
-                                            "LCBS -k 1 --eps1 0.07 --eps2 0.07 --eps3 0.07",
+    std::vector<std::string> algorithms = { "LCBS -k 1 --eps1 5.0 --eps2 5.0 --eps3 5.0",
+                                            "LCBS -k 1 --eps1 1.0 --eps2 1.0 --eps3 1.0",
+                                            "LCBS -k 1 --eps1 0.5 --eps2 0.5 --eps3 0.5",
                                             "LCBS -k 1 --eps1 0.1 --eps2 0.1 --eps3 0.1",
-                                            "LCBS -k 1 --eps1 0.2 --eps2 0.2 --eps3 0.2",
-                                            "LCBS -k 1 --eps1 1.0 --eps2 1.0 --eps3 1.0"};
+                                            "LCBS -k 1 --eps1 0.05 --eps2 0.05 --eps3 0.05",
+                                            "LCBS -k 1 --eps1 0.03 --eps2 0.03 --eps3 0.03",
+                                            "LCBS -k 1 --eps1 0 --eps2 0 --eps3 0"};
 
     std::vector<int> agent_counts = {5, 10, 15, 20, 25, 30, 35};
     int total_runs = 25;
@@ -62,7 +62,9 @@ int main() {
 
     for (const auto& algorithm : algorithms) {
         for (int agents : agent_counts) {
+            std::cout << "\033[1;33m" << "----- Number of agents = " << agents << "\033[0m" << std::endl;
             for (int i = 1; i <= total_runs; ++i) {
+                std::cout << "\033[1;34m" << "----- Scenario " << i << "/" << total_runs << "\033[0m" << std::endl;
                 std::ostringstream scen_name;
                 scen_name << "random-32-32-20-random-" << i << ".scen";
                 std::string command = make_command(scen_name.str(), agents, algorithm);
