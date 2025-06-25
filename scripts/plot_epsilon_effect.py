@@ -2,9 +2,10 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
 import re
+import os
 
 # Load the data from a file
-data = pd.read_csv("sim_data_eps_vary_test.txt")  # <-- Update this filename as needed
+data = pd.read_csv("../data/sim_data_eps_vary_test.txt")  # <-- Update this filename as needed
 
 # Format labels: LCBS (ε=...) in LaTeX
 def format_label(algo):
@@ -54,5 +55,5 @@ plt.title("BASELINE DOMINATION PLOT")
 plt.tight_layout()
 
 # Save and show
-plt.savefig("LCBS_VARIANT_DOMINATION.png", dpi=300)
+plt.savefig("../figures/LCBS_VARIANT_DOMINATION.png", dpi=300)
 plt.show()

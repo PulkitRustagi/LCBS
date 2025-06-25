@@ -6,7 +6,7 @@ import os
 import re
 
 # Load data
-data = pd.read_csv("sim_data_eps_vary.txt")
+data = pd.read_csv("../data/sim_data_eps_vary.txt")
 
 # Format labels with LaTeX ε
 def format_algo_label(raw_label):
@@ -24,7 +24,7 @@ linestyles = ['solid', 'dashed', 'dotted', 'dashdot']
 colors = plt.cm.viridis_r(np.linspace(0, 1, len(unique_labels)))
 
 # Frame storage
-frame_dir = "gif_frames"
+frame_dir = "../figures/gif_frames"
 os.makedirs(frame_dir, exist_ok=True)
 frame_paths = []
 frame_durations = []
@@ -62,7 +62,7 @@ for idx, (label, duration) in enumerate(zip(unique_labels, custom_durations)):
     frame_durations.append(duration)
 
 # Create animated GIF with infinite loop
-gif_path = "GIF_LCBS_SUCCESS_RATE_TRENDS.gif"
+gif_path = "../figures/GIF_LCBS_SUCCESS_RATE_TRENDS.gif"
 with imageio.get_writer(gif_path, mode='I', loop=0, duration=100.0) as writer:
     for path in frame_paths:
         image = imageio.imread(path)

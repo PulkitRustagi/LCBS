@@ -1,8 +1,10 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 
+time_limit = "5" + "sec"  # seconds
+
 # Read from the file directly
-data = pd.read_csv("sim_data_algos_30sec.txt")
+data = pd.read_csv("../data/sim_data_algos_"+time_limit+".txt")
 
 # Plot configuration
 plt.figure(figsize=(6, 3))
@@ -43,9 +45,9 @@ plt.ylabel("Success Rate")
 plt.ylim(-0.05, 1.05)
 plt.grid(True)
 plt.legend(title="success rate:", loc="center left", bbox_to_anchor=(1, 0.5))
-plt.title("Success Rate of Algorithms (T = 30sec)")
+plt.title("Success Rate of Algorithms (T = "+time_limit+")")
 plt.tight_layout()
 
 # Save plot
-plt.savefig("SUCCESS_RATE_PLOT_BASELINES_30sec.png", dpi=150)
+plt.savefig("../SUCCESS_RATE_PLOT_BASELINES_"+time_limit+"sec.png", dpi=150)
 plt.show()
