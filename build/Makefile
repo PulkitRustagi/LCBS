@@ -130,17 +130,30 @@ bbmocbs_approx/fast:
 .PHONY : bbmocbs_approx/fast
 
 #=============================================================================
-# Target rules for targets named sim1_comparisons
+# Target rules for targets named sim1_comparisons_2min
 
 # Build rule for target.
-sim1_comparisons: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 sim1_comparisons
-.PHONY : sim1_comparisons
+sim1_comparisons_2min: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 sim1_comparisons_2min
+.PHONY : sim1_comparisons_2min
 
 # fast build rule for target.
-sim1_comparisons/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/sim1_comparisons.dir/build.make CMakeFiles/sim1_comparisons.dir/build
-.PHONY : sim1_comparisons/fast
+sim1_comparisons_2min/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sim1_comparisons_2min.dir/build.make CMakeFiles/sim1_comparisons_2min.dir/build
+.PHONY : sim1_comparisons_2min/fast
+
+#=============================================================================
+# Target rules for targets named sim1_comparisons_1min
+
+# Build rule for target.
+sim1_comparisons_1min: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 sim1_comparisons_1min
+.PHONY : sim1_comparisons_1min
+
+# fast build rule for target.
+sim1_comparisons_1min/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sim1_comparisons_1min.dir/build.make CMakeFiles/sim1_comparisons_1min.dir/build
+.PHONY : sim1_comparisons_1min/fast
 
 #=============================================================================
 # Target rules for targets named sim2_slack_experiment
@@ -635,29 +648,53 @@ src/main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/bbmocbs_approx.dir/build.make CMakeFiles/bbmocbs_approx.dir/src/main.cpp.s
 .PHONY : src/main.cpp.s
 
-src/simulate_baseline_comparisons.o: src/simulate_baseline_comparisons.cpp.o
-.PHONY : src/simulate_baseline_comparisons.o
+src/simulate_baseline_comparisons_1min.o: src/simulate_baseline_comparisons_1min.cpp.o
+.PHONY : src/simulate_baseline_comparisons_1min.o
 
 # target to build an object file
-src/simulate_baseline_comparisons.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/sim1_comparisons.dir/build.make CMakeFiles/sim1_comparisons.dir/src/simulate_baseline_comparisons.cpp.o
-.PHONY : src/simulate_baseline_comparisons.cpp.o
+src/simulate_baseline_comparisons_1min.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sim1_comparisons_1min.dir/build.make CMakeFiles/sim1_comparisons_1min.dir/src/simulate_baseline_comparisons_1min.cpp.o
+.PHONY : src/simulate_baseline_comparisons_1min.cpp.o
 
-src/simulate_baseline_comparisons.i: src/simulate_baseline_comparisons.cpp.i
-.PHONY : src/simulate_baseline_comparisons.i
+src/simulate_baseline_comparisons_1min.i: src/simulate_baseline_comparisons_1min.cpp.i
+.PHONY : src/simulate_baseline_comparisons_1min.i
 
 # target to preprocess a source file
-src/simulate_baseline_comparisons.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/sim1_comparisons.dir/build.make CMakeFiles/sim1_comparisons.dir/src/simulate_baseline_comparisons.cpp.i
-.PHONY : src/simulate_baseline_comparisons.cpp.i
+src/simulate_baseline_comparisons_1min.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sim1_comparisons_1min.dir/build.make CMakeFiles/sim1_comparisons_1min.dir/src/simulate_baseline_comparisons_1min.cpp.i
+.PHONY : src/simulate_baseline_comparisons_1min.cpp.i
 
-src/simulate_baseline_comparisons.s: src/simulate_baseline_comparisons.cpp.s
-.PHONY : src/simulate_baseline_comparisons.s
+src/simulate_baseline_comparisons_1min.s: src/simulate_baseline_comparisons_1min.cpp.s
+.PHONY : src/simulate_baseline_comparisons_1min.s
 
 # target to generate assembly for a file
-src/simulate_baseline_comparisons.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/sim1_comparisons.dir/build.make CMakeFiles/sim1_comparisons.dir/src/simulate_baseline_comparisons.cpp.s
-.PHONY : src/simulate_baseline_comparisons.cpp.s
+src/simulate_baseline_comparisons_1min.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sim1_comparisons_1min.dir/build.make CMakeFiles/sim1_comparisons_1min.dir/src/simulate_baseline_comparisons_1min.cpp.s
+.PHONY : src/simulate_baseline_comparisons_1min.cpp.s
+
+src/simulate_baseline_comparisons_2min.o: src/simulate_baseline_comparisons_2min.cpp.o
+.PHONY : src/simulate_baseline_comparisons_2min.o
+
+# target to build an object file
+src/simulate_baseline_comparisons_2min.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sim1_comparisons_2min.dir/build.make CMakeFiles/sim1_comparisons_2min.dir/src/simulate_baseline_comparisons_2min.cpp.o
+.PHONY : src/simulate_baseline_comparisons_2min.cpp.o
+
+src/simulate_baseline_comparisons_2min.i: src/simulate_baseline_comparisons_2min.cpp.i
+.PHONY : src/simulate_baseline_comparisons_2min.i
+
+# target to preprocess a source file
+src/simulate_baseline_comparisons_2min.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sim1_comparisons_2min.dir/build.make CMakeFiles/sim1_comparisons_2min.dir/src/simulate_baseline_comparisons_2min.cpp.i
+.PHONY : src/simulate_baseline_comparisons_2min.cpp.i
+
+src/simulate_baseline_comparisons_2min.s: src/simulate_baseline_comparisons_2min.cpp.s
+.PHONY : src/simulate_baseline_comparisons_2min.s
+
+# target to generate assembly for a file
+src/simulate_baseline_comparisons_2min.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sim1_comparisons_2min.dir/build.make CMakeFiles/sim1_comparisons_2min.dir/src/simulate_baseline_comparisons_2min.cpp.s
+.PHONY : src/simulate_baseline_comparisons_2min.cpp.s
 
 src/simulate_slack_experiments.o: src/simulate_slack_experiments.cpp.o
 .PHONY : src/simulate_slack_experiments.o
@@ -692,7 +729,8 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... bbmocbs_approx"
-	@echo "... sim1_comparisons"
+	@echo "... sim1_comparisons_1min"
+	@echo "... sim1_comparisons_2min"
 	@echo "... sim2_slack_experiment"
 	@echo "... src/Definitions.o"
 	@echo "... src/Definitions.i"
@@ -754,9 +792,12 @@ help:
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
-	@echo "... src/simulate_baseline_comparisons.o"
-	@echo "... src/simulate_baseline_comparisons.i"
-	@echo "... src/simulate_baseline_comparisons.s"
+	@echo "... src/simulate_baseline_comparisons_1min.o"
+	@echo "... src/simulate_baseline_comparisons_1min.i"
+	@echo "... src/simulate_baseline_comparisons_1min.s"
+	@echo "... src/simulate_baseline_comparisons_2min.o"
+	@echo "... src/simulate_baseline_comparisons_2min.i"
+	@echo "... src/simulate_baseline_comparisons_2min.s"
 	@echo "... src/simulate_slack_experiments.o"
 	@echo "... src/simulate_slack_experiments.i"
 	@echo "... src/simulate_slack_experiments.s"

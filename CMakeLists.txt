@@ -14,7 +14,8 @@ include_directories("inc")
 file(GLOB SOURCES "src/*.cpp" "src/HighLevel/*.cpp" "src/LowLevel/*.cpp" "src/LowLevel/Utils/*.cpp")
 
 # Remove simulate_algo.cpp to avoid duplicate main() error
-list(REMOVE_ITEM SOURCES ${CMAKE_SOURCE_DIR}/src/simulate_baseline_comparisons.cpp)
+list(REMOVE_ITEM SOURCES ${CMAKE_SOURCE_DIR}/src/simulate_baseline_comparisons_2min.cpp)
+list(REMOVE_ITEM SOURCES ${CMAKE_SOURCE_DIR}/src/simulate_baseline_comparisons_1min.cpp)
 list(REMOVE_ITEM SOURCES ${CMAKE_SOURCE_DIR}/src/simulate_slack_experiments.cpp)
 
 # Find Boost
@@ -28,8 +29,12 @@ add_executable(bbmocbs_approx src/main.cpp ${SOURCES})
 target_link_libraries(bbmocbs_approx ${Boost_LIBRARIES})
 
 # Simulation automation binary
-add_executable(sim1_comparisons src/simulate_baseline_comparisons.cpp)
-target_link_libraries(sim1_comparisons ${Boost_LIBRARIES})
+add_executable(sim1_comparisons_2min src/simulate_baseline_comparisons_2min.cpp)
+target_link_libraries(sim1_comparisons_2min ${Boost_LIBRARIES})
+
+# Simulation automation binary
+add_executable(sim1_comparisons_1min src/simulate_baseline_comparisons_1min.cpp)
+target_link_libraries(sim1_comparisons_1min ${Boost_LIBRARIES})
 
 # Simulation automation binary
 add_executable(sim2_slack_experiment src/simulate_slack_experiments.cpp)

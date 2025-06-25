@@ -103,6 +103,7 @@ set(CMAKE_MAKEFILE_PRODUCTS
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/bbmocbs_approx.dir/DependInfo.cmake"
-  "CMakeFiles/sim1_comparisons.dir/DependInfo.cmake"
+  "CMakeFiles/sim1_comparisons_2min.dir/DependInfo.cmake"
+  "CMakeFiles/sim1_comparisons_1min.dir/DependInfo.cmake"
   "CMakeFiles/sim2_slack_experiment.dir/DependInfo.cmake"
   )
