@@ -1,7 +1,7 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 
-time_limit = "5" + "sec"  # seconds
+time_limit = "1" + "sec"  # seconds
 
 # Read from the file directly
 data = pd.read_csv("../data/sim_data_algos_"+time_limit+".txt")
@@ -13,7 +13,7 @@ markers = {
     "BBMOCBS-eps": 's',
     "BBMOCBS-pex": 'v',
     "LCBS": 'P',
-}
+}   
 colors = {
     "BBMOCBS-k (k=5)": 'black',
     "BBMOCBS-eps": 'cyan',
@@ -49,5 +49,5 @@ plt.title("Success Rate of Algorithms (T = "+time_limit+")")
 plt.tight_layout()
 
 # Save plot
-plt.savefig("../SUCCESS_RATE_PLOT_BASELINES_"+time_limit+"sec.png", dpi=150)
+plt.savefig("../figures/SUCCESS_RATE_PLOT_BASELINES_"+time_limit+".png", dpi=150)
 plt.show()

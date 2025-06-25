@@ -25,7 +25,7 @@ std::string make_command(const std::string& scen_file, int agent_num, const std:
         << " --c3 " << cost3
         << " --CB true"
         << " --eager true"
-        << " -t 15"
+        << " -t 1"
         << " -o " << output_file
         << " -a " << algorithm
         << " -n " << agent_num;
@@ -49,7 +49,7 @@ int main() {
     std::vector<int> agent_counts = {5, 10, 15, 20, 25, 30, 35};
     int total_runs = 25;
 
-    std::ofstream summary("../data/sim_data_algos_15sec.txt", std::ios::app);
+    std::ofstream summary("../data/sim_data_algos_1sec.txt", std::ios::app);
     summary.seekp(0, std::ios::end);
     summary << "Algorithm,Agents,SuccessCount,Total,SuccessRate\n\n";
 
@@ -57,7 +57,7 @@ int main() {
         for (int agents : agent_counts) {
             std::cout << "\033[1;33m" << "----- Number of agents = " << agents << "\033[0m" << std::endl;
             for (int i = 1; i <= total_runs; ++i) {
-                std::cout << "\033[1;34m" << "[15 sec]Running scenario " << i << " for algorithm: " << algorithm << "\033[0m" << std::endl;
+                std::cout << "\033[1;34m" << "[1 sec]Running scenario " << i << " for algorithm: " << algorithm << "\033[0m" << std::endl;
                 std::ostringstream scen_name;
                 scen_name << "random-32-32-20-random-" << i << ".scen";
                 std::string command = make_command(scen_name.str(), agents, algorithm);
