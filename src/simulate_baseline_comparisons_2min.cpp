@@ -5,12 +5,15 @@
 #include <vector>
 #include <cstdlib>
 
-std::string map_file = "../example/random-32-32-20.map";
+std::string time_lim = "1"; // seconds
+std::string map_name = "random-32-32-20";
+
+std::string map_file = "../example/"+map_name+".map";
 std::string cost1 = "../example/random-3.cost";
 std::string cost2 = "../example/random-2.cost";
 std::string cost3 = "../example/random-1.cost";
 std::string scen_dir = "../example/scen-random";
-std::string output_file = "../data/output_log_5sec.txt";
+std::string output_file = "../data/output_log_"+time_lim+"sec.txt";
 std::string binary = "./bin/bbmocbs_approx";
 
 std::string make_command(const std::string& scen_file, int agent_num, const std::string& algorithm) {
@@ -25,11 +28,30 @@ std::string make_command(const std::string& scen_file, int agent_num, const std:
         << " --c3 " << cost3
         << " --CB true"
         << " --eager true"
-        << " -t 5"
+        << " -t "+time_lim
         << " -o " << output_file
         << " -a " << algorithm
         << " -n " << agent_num;
     return cmd.str();
+}
+
+std::string clean_algorithm_name(const std::string& algo) {
+    if (algo == "LCBS -k 1") return "LCBS";
+
+    std::ostringstream cleaned;
+    for (size_t i = 0; i < algo.size(); ++i) {
+        if (algo[i] == '-') {
+            cleaned << '_';
+        } else if (algo[i] != ' ') {
+            cleaned << algo[i];
+        }
+    }
+    std::string s = cleaned.str();
+    size_t pos;
+    while ((pos = s.find("_k")) != std::string::npos && s[pos + 2] == 'k') {
+        s.replace(pos, 3, "_");
+    }
+    return s;
 }
 
 int count_successes(const std::string& output_file) {
@@ -44,12 +66,74 @@ int count_successes(const std::string& output_file) {
     return count;
 }
 
+void write_run_outcomes(const std::string& output_file, const std::string& algo_label, int agents) {
+    std::ifstream infile(output_file);
+    std::ofstream outfile;
+
+    // Clean up algorithm name for file-safe naming
+    std::string clean_algo = clean_algorithm_name(algo_label);
+    std::replace(clean_algo.begin(), clean_algo.end(), ' ', '_');
+    std::replace(clean_algo.begin(), clean_algo.end(), '-', '_');
+
+
+    std::ofstream out_name("../data/performance_stats/"+map_name+"/"+clean_algo+"_"+std::to_string(agents)+"_t"+time_lim+".stats", std::ios::app);
+    out_name.seekp(0, std::ios::end);
+    // out_name << "../data/performance_stats_" << clean_algo << "_" << agents << ".stats";
+    outfile.open("../data/performance_stats/"+map_name+"/"+clean_algo+"_"+std::to_string(agents)+"_t"+time_lim+".stats", std::ios::app);
+
+    // Read the entire file line-by-line
+    std::string line;
+    std::vector<std::string> lines;
+    while (std::getline(infile, line)) {
+        lines.push_back(line);
+    }
+
+    // Parse blocks delimited by "------"
+    std::vector<std::string> results;
+    std::string current_block;
+    for (const auto& l : lines) {
+        if (l.find("------") != std::string::npos) {
+            results.push_back(current_block);
+            current_block.clear();
+        } else {
+            current_block += l + "\n";
+        }
+    }
+
+    // Optional: include last block if file doesn't end with "------"
+    if (!current_block.empty()) {
+        results.push_back(current_block);
+    }
+
+    // Write outcomes indexed by scenario number
+    for (size_t i = 0; i < results.size(); ++i) {
+        const std::string& block = results[i];
+        std::string outcome = "UNKNOWN";
+        std::istringstream block_stream(block);
+        std::string l;
+        while (std::getline(block_stream, l)) {
+            if (l.find("SUCCESS") != std::string::npos) {
+                outcome = "SUCCESS";
+                break;
+            } else if (l.find("FAIL") != std::string::npos) {
+                outcome = "FAIL";
+                break;
+            }
+        }
+        // std::cout << "Scenario " << (i + 1) << ": " << outcome << std::endl;
+        outfile << (i + 1) << " - " << outcome << "\n";
+    }
+
+    outfile.close();
+}
+
+
 int main() {
-    std::vector<std::string> algorithms = {"LCBS -k 1", "BBMOCBS-k -k 5", "BBMOCBS-eps", "BBMOCBS-pex"};
+    std::vector<std::string> algorithms = {"LCBS -k 1", "BBMOCBS-k -k 5", "BBMOCBS-k -k 10", "BBMOCBS-eps", "BBMOCBS-pex"};
     std::vector<int> agent_counts = {5, 10, 15, 20, 25, 30, 35};
     int total_runs = 25;
 
-    std::ofstream summary("../data/sim_data_algos_5sec.txt", std::ios::app);
+    std::ofstream summary("../data/sim_data_algos_"+time_lim+"sec.txt", std::ios::app);
     summary.seekp(0, std::ios::end);
     summary << "Algorithm,Agents,SuccessCount,Total,SuccessRate\n\n";
 
@@ -57,12 +141,14 @@ int main() {
         for (int agents : agent_counts) {
             std::cout << "\033[1;33m" << "----- Number of agents = " << agents << "\033[0m" << std::endl;
             for (int i = 1; i <= total_runs; ++i) {
-                std::cout << "\033[1;34m" << "[5 sec]Running scenario " << i << " for algorithm: " << algorithm << "\033[0m" << std::endl;
+                std::cout << "\033[1;34m" << "["+time_lim+" sec]Running scenario " << i << " for algorithm: " << algorithm << "\033[0m" << std::endl;
                 std::ostringstream scen_name;
-                scen_name << "random-32-32-20-random-" << i << ".scen";
+                scen_name << ""+map_name+"-random-" << i << ".scen";
                 std::string command = make_command(scen_name.str(), agents, algorithm);
                 std::system(command.c_str());
             }
+            
+            write_run_outcomes(output_file, algorithm, agents);
 
             int success_count = count_successes(output_file);
             double rate = success_count / static_cast<double>(total_runs);
