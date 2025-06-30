@@ -47,7 +47,7 @@ colors = {
 linestyles = {
     "BBMOCBS-k (k=5)": 'dotted',
     "BBMOCBS-k (k=10)": 'dotted',
-    "BBMOCBS-eps": 'dotted',
+    "BBMOCBS-eps": 'dotted', 
     "BBMOCBS-pex": 'dotted',
     "LCBS": 'solid',
 }
