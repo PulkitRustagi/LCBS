@@ -13,7 +13,7 @@ std::string cost1 = "../maps/"+map_name+"/random-3.cost";
 std::string cost2 = "../maps/"+map_name+"/random-2.cost";
 std::string cost3 = "../maps/"+map_name+"/random-1.cost";
 std::string scen_dir = "../maps/"+map_name+"/scen-random";
-std::string output_file = "../data/"+map_name+"/output_log_"+time_lim+"sec.txt";
+std::string output_file = "../data/"+map_name+"_output_log_"+time_lim+"sec.txt";
 std::string binary = "./bin/bbmocbs_approx";
 
 std::string make_command(const std::string& scen_file, int agent_num, const std::string& algorithm) {
