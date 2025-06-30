@@ -10,18 +10,21 @@ data = pd.read_csv("../data/sim_data_algos_"+time_limit+".txt")
 plt.figure(figsize=(6, 3))
 markers = {
     "BBMOCBS-k (k=5)": 'o',
+    "BBMOCBS-k (k=10)": 'x',
     "BBMOCBS-eps": 's',
     "BBMOCBS-pex": 'v',
     "LCBS": 'P',
 }   
 colors = {
     "BBMOCBS-k (k=5)": 'black',
+    "BBMOCBS-k (k=10)": 'gray',
     "BBMOCBS-eps": 'cyan',
     "BBMOCBS-pex": 'blue',
     "LCBS": 'red',
 }
 linestyles = {
     "BBMOCBS-k (k=5)": 'dotted',
+    "BBMOCBS-k (k=10)": 'dotted',
     "BBMOCBS-eps": 'dotted',
     "BBMOCBS-pex": 'dotted',
     "LCBS": 'solid',

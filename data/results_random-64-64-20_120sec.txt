@@ -2,8 +2,8 @@ Algorithm,Agents,SuccessCount,Total,SuccessRate
 
 LCBS -k 1,5,25,25,1
 LCBS -k 1,10,19,25,0.76
-LCBS -k 1,15,12,25,0.48
-LCBS -k 1,20,14,25,0.56
+LCBS -k 1,15,12,25,0.56
+LCBS -k 1,20,14,25,0.48
 LCBS -k 1,25,6,25,0.24
 LCBS -k 1,30,0,25,0
 LCBS -k 1,35,0,25,0
