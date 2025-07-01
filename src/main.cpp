@@ -45,10 +45,13 @@ desc.add_options()
     ("c2", po::value<std::string>()->default_value(""), "cost map 2")
     ("c3", po::value<std::string>()->default_value(""), "cost map 3")
     ("c4", po::value<std::string>()->default_value(""), "cost map 4")
+    ("c5", po::value<std::string>()->default_value(""), "cost map 5")
 
     ("eps1", po::value<double>()->default_value(0.1), "eps1 (slack for cost 1)")
     ("eps2", po::value<double>()->default_value(0.1), "eps2 (slack for cost 2)")
     ("eps3", po::value<double>()->default_value(0.1), "eps3 (slack for cost 3)")
+    ("eps4", po::value<double>()->default_value(0.1), "eps4 (slack for cost 4)")
+    ("eps5", po::value<double>()->default_value(0.1), "eps5 (slack for cost 5)")
 
     ("CB", po::value<std::string>()->default_value("true"), "if conflict-based")
     ("eager", po::value<std::string>()->default_value("true"), "if eager")
@@ -91,6 +94,7 @@ double eps1 = vm["eps1"].as<double>();
 double eps2 = vm["eps2"].as<double>();
 double eps3 = vm["eps3"].as<double>();
 double eps4 = vm["eps4"].as<double>();
+double eps5 = vm["eps5"].as<double>();
 MergingStrategy ms = vm["CB"].as<std::string>() == "true" ? MergingStrategy::CONFLICT_BASED : MergingStrategy::MORE_SLACK;
 bool if_eager = vm["eager"].as<std::string>() == "true" ? true : false;
 int turn_dim = vm["turn_dim"].as<int>();
@@ -129,7 +133,7 @@ if(vm["algorithm"].as<std::string>() == "BBMOCBS-eps"){
     ((kSolver*)h_solver.get())->set_solution_num(vm["solution_num"].as<int>());
 }else if(vm["algorithm"].as<std::string>() == "LCBS"){
     h_solver = std::make_unique<lcbsSolver>(map.graph_size, vm["agent_num"].as<int>(), Algorithm::LCBS, if_eager, dim, turn_dim, vm["turn_cost"].as<int>(), vm["time_limit"].as<int>());
-    ((lcbsSolver*)h_solver.get())->set_eps(eps1, eps2, eps3, eps4);
+    ((lcbsSolver*)h_solver.get())->set_eps(eps1, eps2, eps3, eps4, eps5);
     ((lcbsSolver*)h_solver.get())->set_merging_strategy(ms);
     ((lcbsSolver*)h_solver.get())->set_solution_num(vm["solution_num"].as<int>());
 }else{

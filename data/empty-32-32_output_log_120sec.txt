@@ -1,0 +1,66 @@
+SUCCESS
+apex cost: 
+{89, 208, 221}, 
+real cost: 
+{89, 208, 221}, 
+
+
+Algorithm = LCBS
+Agents = 5
+SuccessFlag = True
+------
+SUCCESS
+apex cost: 
+{106, 237, 276}, 
+real cost: 
+{106, 237, 276}, 
+
+
+Algorithm = LCBS
+Agents = 5
+SuccessFlag = True
+------
+SUCCESS
+apex cost: 
+{72, 187, 216}, 
+real cost: 
+{72, 187, 216}, 
+
+
+Algorithm = LCBS
+Agents = 5
+SuccessFlag = True
+------
+SUCCESS
+apex cost: 
+{87, 205, 231}, 
+real cost: 
+{87, 205, 231}, 
+
+
+Algorithm = LCBS
+Agents = 5
+SuccessFlag = True
+------
+SUCCESS
+apex cost: 
+{136, 326, 333}, 
+real cost: 
+{136, 326, 333}, 
+
+
+Algorithm = LCBS
+Agents = 5
+SuccessFlag = True
+------
+SUCCESS
+apex cost: 
+{72, 170, 183}, 
+real cost: 
+{72, 170, 183}, 
+
+
+Algorithm = LCBS
+Agents = 5
+SuccessFlag = True
+------

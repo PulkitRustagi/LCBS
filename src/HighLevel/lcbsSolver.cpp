@@ -31,8 +31,9 @@ void lcbsSolver::MergeJointPaths(HighLevelNodePtr node,
     // double eps2 = this->eps2;   // tolerance for cost[1]
     // double eps3 = this->eps3;   // tolerance for cost[2]
     // double eps4 = this->eps4;   // tolerance for cost[3]
+    // double eps5 = this->eps5;   // tolerance for cost[4]
     std::cout << "\033[1;31m"
-              << "eps1 = " << eps1 << ", eps2 = " << eps2 << ", eps3 = " << eps3 << ", eps4 = " << eps4
+              << "eps1 = " << eps1 << ", eps2 = " << eps2 << ", eps3 = " << eps3 << ", eps4 = " << eps4 << ", eps5 = " << eps5
               << "\033[0m" << std::endl;
 
     std::chrono::high_resolution_clock::time_point _t1 = std::chrono::high_resolution_clock::now();
@@ -83,7 +84,7 @@ void lcbsSolver::MergeJointPaths(HighLevelNodePtr node,
 
         /* keep lexicographically best candidates */
         apex_idx_combos.sort([](const auto& a,const auto& b){ return less_than_pair(a,b); });
-        LexFilter(apex_idx_combos, eps1, eps2, eps3, eps4);
+        LexFilter(apex_idx_combos, eps1, eps2, eps3, eps4, eps5);
 
         /* OPTIONAL –– cap list length (maintains earliest elements) */
         while ((int)apex_idx_combos.size() > solution_num)
@@ -104,7 +105,7 @@ void lcbsSolver::MergeJointPaths(HighLevelNodePtr node,
 
 /********************  NEW  ––  Lexicographic filter  ********************/
 void lcbsSolver::LexFilter(std::list<std::pair<CostVector,int>>& apex_idx_combos,
-                      double eps1, double eps2, double eps3, double eps4)
+                      double eps1, double eps2, double eps3, double eps4, double eps5)
 {
     if (apex_idx_combos.empty()) return;
 
@@ -126,12 +127,18 @@ void lcbsSolver::LexFilter(std::list<std::pair<CostVector,int>>& apex_idx_combos
                                  ->first[2];
     apex_idx_combos.remove_if([&](const auto& p){ return p.first[2] > min2 * (1 + eps3); });
 
-    /* --------- fourth objective (index 3) -------- */
-    if (apex_idx_combos.front().first.size() >= 4) {
-        auto min3 = std::min_element(apex_idx_combos.begin(), apex_idx_combos.end(),
-                                     [](const auto& a, const auto& b){ return a.first[3] < b.first[3]; })
-                                     ->first[3];
-        apex_idx_combos.remove_if([&](const auto& p){ return p.first[3] > min3 * (1 + eps4); });
+    /* --------- fifth objective (index 3) -------- */
+    auto min3 = std::min_element(apex_idx_combos.begin(), apex_idx_combos.end(),
+                                 [](const auto& a, const auto& b){ return a.first[3] < b.first[3]; })
+                                 ->first[3];
+    apex_idx_combos.remove_if([&](const auto& p){ return p.first[3] > min3 * (1 + eps4); });
+
+    /* --------- fourth objective (index 4) -------- */
+    if (apex_idx_combos.front().first.size() > 4) {
+        auto min4 = std::min_element(apex_idx_combos.begin(), apex_idx_combos.end(),
+                                     [](const auto& a, const auto& b){ return a.first[4] < b.first[4]; })
+                                     ->first[4];
+        apex_idx_combos.remove_if([&](const auto& p){ return p.first[4] > min4 * (1 + eps5); });
     }
 
 }
@@ -230,6 +237,17 @@ void lcbsSolver::MergeUntil(std::list<std::pair<CostVector, int>>& apex_idx_comb
     int total_num = apex_idx_combos.size();
 
     using mutual_eps = std::tuple<double, size_t, size_t>; // eps,apex_idx,real_idx,if_valid
+    // print the real_cost_vector for debugging purposes in green clor
+    std::cout << "\033[1;32m";
+    for (const auto& cost : real_costs_vector) {
+        std::cout << "[lcbsSolver.cpp - l236]Real Cost: ";
+        for (const auto& c : cost) {
+            std::cout << c << " ";
+        }
+        std::cout << "\n";
+    }
+    std::cout << "\033[0m";
+
     std::list<mutual_eps>               eps_list;
     std::vector<CostVector>             apex_vector;
     std::vector<bool>                   valid_vector(total_num, true);
@@ -397,6 +415,17 @@ OutputTuple lcbsSolver::run(std::vector<Edge>& edges, std::vector<std::pair<size
     double duration;
 
     std::vector<CostVector> hsolution_apex_costs;
+    // print in green color just for sanity check for hsolution_apex_costs
+    std::cout << "\033[1;32m";
+    for (const auto& cost : hsolution_apex_costs) {
+        std::cout << "[lcbsSolver.cpp - l414]Apex Cost: ";
+        for (const auto& c : cost) {
+            std::cout << c << " ";
+        }
+        std::cout << "\n";
+    }
+    std::cout << "\033[0m";
+
     bool is_success = true;
     
     double HLMergingTime = 0, LowLevelTime = 0, TotalTime;
