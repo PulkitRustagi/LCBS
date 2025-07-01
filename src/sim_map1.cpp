@@ -12,6 +12,7 @@ std::string map_file = "../maps/"+map_name+"/"+map_name+".map";
 std::string cost1 = "../maps/"+map_name+"/random-3.cost";
 std::string cost2 = "../maps/"+map_name+"/random-2.cost";
 std::string cost3 = "../maps/"+map_name+"/random-1.cost";
+std::string cost4 = "../maps/"+map_name+"/random-2.cost";
 std::string scen_dir = "../maps/"+map_name+"/scen-random";
 std::string output_file = "../data/"+map_name+"_output_log_"+time_lim+"sec.txt";
 std::string binary = "./bin/bbmocbs_approx";
@@ -20,12 +21,13 @@ std::string make_command(const std::string& scen_file, int agent_num, const std:
     std::ostringstream cmd;
     cmd << binary
         << " -m " << map_file
-        << " -d 3"
+        << " -d 4"
         << " -s " << scen_dir << "/" << scen_file
         << " -e 0.03"
         << " --c1 " << cost1
         << " --c2 " << cost2
         << " --c3 " << cost3
+        << " --c4 " << cost4
         << " --CB true"
         << " --eager true"
         << " -t "+time_lim

@@ -1,7 +1,7 @@
 #include "HighLevel/HighLevelSolver.h"
 
 HighLevelSolver::HighLevelSolver(size_t graph_size, int agent_num, Algorithm algorithm, bool if_eager, int dim, int turn_dim, int turn_cost, int time_limit,
-                                 double eps1, double eps2, double eps3)
+                                 double eps1, double eps2, double eps3, double eps4)
 {
     this->GRAPH_SIZE = graph_size;
     this->AGENT_NUM = agent_num;
@@ -27,6 +27,7 @@ HighLevelSolver::HighLevelSolver(size_t graph_size, int agent_num, Algorithm alg
         this->eps1 = eps1;
         this->eps2 = eps2;
         this->eps3 = eps3;
+        this->eps4 = eps4;
     }else{
         assert(0);
     }

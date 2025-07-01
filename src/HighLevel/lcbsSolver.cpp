@@ -30,8 +30,9 @@ void lcbsSolver::MergeJointPaths(HighLevelNodePtr node,
     // double eps1 = this->eps1;   // tolerance for cost[0]
     // double eps2 = this->eps2;   // tolerance for cost[1]
     // double eps3 = this->eps3;   // tolerance for cost[2]
+    // double eps4 = this->eps4;   // tolerance for cost[3]
     std::cout << "\033[1;31m"
-              << "eps1 = " << eps1 << ", eps2 = " << eps2 << ", eps3 = " << eps3
+              << "eps1 = " << eps1 << ", eps2 = " << eps2 << ", eps3 = " << eps3 << ", eps4 = " << eps4
               << "\033[0m" << std::endl;
 
     std::chrono::high_resolution_clock::time_point _t1 = std::chrono::high_resolution_clock::now();
@@ -82,7 +83,7 @@ void lcbsSolver::MergeJointPaths(HighLevelNodePtr node,
 
         /* keep lexicographically best candidates */
         apex_idx_combos.sort([](const auto& a,const auto& b){ return less_than_pair(a,b); });
-        LexFilter(apex_idx_combos, eps1, eps2, eps3);
+        LexFilter(apex_idx_combos, eps1, eps2, eps3, eps4);
 
         /* OPTIONAL –– cap list length (maintains earliest elements) */
         while ((int)apex_idx_combos.size() > solution_num)
@@ -103,7 +104,7 @@ void lcbsSolver::MergeJointPaths(HighLevelNodePtr node,
 
 /********************  NEW  ––  Lexicographic filter  ********************/
 void lcbsSolver::LexFilter(std::list<std::pair<CostVector,int>>& apex_idx_combos,
-                      double eps1, double eps2, double eps3)
+                      double eps1, double eps2, double eps3, double eps4)
 {
     if (apex_idx_combos.empty()) return;
 
@@ -119,13 +120,20 @@ void lcbsSolver::LexFilter(std::list<std::pair<CostVector,int>>& apex_idx_combos
                                  ->first[1];
     apex_idx_combos.remove_if([&](const auto& p){ return p.first[1] > min1 * (1 + eps2); });
 
-    /* -------- third objective (index 2) -------- */
-    if (apex_idx_combos.front().first.size() >= 3) {
-        auto min2 = std::min_element(apex_idx_combos.begin(), apex_idx_combos.end(),
-                                     [](const auto& a, const auto& b){ return a.first[2] < b.first[2]; })
-                                     ->first[2];
-        apex_idx_combos.remove_if([&](const auto& p){ return p.first[2] > min2 * (1 + eps3); });
+    /* --------- third objective (index 2) -------- */
+    auto min2 = std::min_element(apex_idx_combos.begin(), apex_idx_combos.end(),
+                                 [](const auto& a, const auto& b){ return a.first[2] < b.first[2]; })
+                                 ->first[2];
+    apex_idx_combos.remove_if([&](const auto& p){ return p.first[2] > min2 * (1 + eps3); });
+
+    /* --------- fourth objective (index 3) -------- */
+    if (apex_idx_combos.front().first.size() >= 4) {
+        auto min3 = std::min_element(apex_idx_combos.begin(), apex_idx_combos.end(),
+                                     [](const auto& a, const auto& b){ return a.first[3] < b.first[3]; })
+                                     ->first[3];
+        apex_idx_combos.remove_if([&](const auto& p){ return p.first[3] > min3 * (1 + eps4); });
     }
+
 }
 /*************************************************************************/
 

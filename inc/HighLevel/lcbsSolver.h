@@ -18,7 +18,7 @@ protected:
 
 
     void MergeJointPaths(HighLevelNodePtr node, int solution_num, double max_eps=INT_MAX);
-    void LexFilter(std::list<std::pair<CostVector,int>>& apex_idx_combos, double eps1, double eps2, double eps3);
+    void LexFilter(std::list<std::pair<CostVector,int>>& apex_idx_combos, double eps1, double eps2, double eps3, double eps4);
     void NonDomVec(std::list<std::pair<CostVector, int>>& apex_idx_combos, std::vector<CostVector>& real_costs_vector, std::vector<std::vector<size_t>>& ids_vector, 
         std::vector<int>& conflict_nums_vector, MergingStrategy ms, double eps);
     void MergeUntil(std::list<std::pair<CostVector, int>>& apex_idx_combos, std::vector<CostVector>& real_costs_vector, int solution_num, double max_eps=INT_MAX);
@@ -32,11 +32,12 @@ public:
     : HighLevelSolver(graph_size, agent_num, algorithm, if_eager, dim, turn_dim, turn_cost, time_limit){}
     void set_merging_strategy(MergingStrategy ms){MS = ms;}
     void set_solution_num(int solution_num){SOLUTION_NUM = solution_num;}
-    void set_eps(double eps1_ = 0.0, double eps2_ = 0.0, double eps3_ = 0.0)
+    void set_eps(double eps1_ = 0.0, double eps2_ = 0.0, double eps3_ = 0.0, double eps4_ = 0.0)
     {
         eps1 = eps1_;
         eps2 = eps2_;
         eps3 = eps3_;
+        eps4 = eps4_;
     }
     OutputTuple run(std::vector<Edge>& edges, std::vector<std::pair<size_t, size_t>>& start_end, HSolutionID& hsolution_ids, std::vector<CostVector>& hsolution_costs, LoggerPtr& logger) override;
 };
