@@ -54,7 +54,7 @@ linestyles = {
 
 for map_name in map_names:
     # Plot configuration
-    plt.figure(figsize=(6, 3))
+    plt.figure(figsize=(4, 2.8))
     # Read from the file directly
     data = pd.read_csv("../data/results_"+map_name+"_120sec.txt")
 
@@ -68,13 +68,17 @@ for map_name in map_names:
             marker=markers.get(algo_name, 'o'),
             color=colors.get(algo_name, None),
             linestyle=linestyles.get(algo_name, 'solid'),
-            label=algo_name
+            label=algo_name,
+            markersize=10,
+            linewidth=3.5
         )
 
 
     # Axis labels and styling
-    plt.xlabel("Agents")
-    plt.ylabel("Success Rate")
+    plt.xlabel("Agents", fontsize=16)
+    plt.ylabel("Success Rate", fontsize=16)
+    plt.xticks(fontsize=16)
+    plt.yticks(fontsize=16)
     plt.ylim(-0.05, 1.05)
     plt.grid(True)
     # plt.legend(title="success rate:", loc="center left", bbox_to_anchor=(1, 0.5))
@@ -84,3 +88,16 @@ for map_name in map_names:
     # Save plot
     plt.savefig("../figures/benchmarks/"+map_name+".png", dpi=150)
     # plt.show()
+
+# save legend separately as a box with 1 row and 5 columns as a png file
+plt.figure(figsize=(4, 0.5))
+plt.plot([], [], marker='P', color='red', linestyle='solid', label='LCBS', markersize=10, linewidth=3)
+plt.plot([], [], marker='o', color='black', linestyle='dotted', label='BBMOCBS-k (k=5)', markersize=10, linewidth=3)
+plt.plot([], [], marker='x', color='gray', linestyle='dotted', label='BBMOCBS-k (k=10)', markersize=10, linewidth=3)
+plt.plot([], [], marker='s', color='cyan', linestyle='dotted', label='BBMOCBS-eps', markersize=10, linewidth=3)
+plt.plot([], [], marker='v', color='blue', linestyle='dotted', label='BBMOCBS-pex', markersize=10, linewidth=3)
+plt.legend(loc="center", fontsize=16, title_fontsize=16, ncol=5)
+plt.axis('off')
+plt.tight_layout()
+plt.savefig("../figures/benchmarks/legend.png", dpi=150, bbox_inches='tight')
+# plt.show()
