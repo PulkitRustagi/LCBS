@@ -30,6 +30,9 @@ map_names = ["empty-32-32",
              "room-64-64-16",
              "room-64-64-8"]
 
+# map_names = ["random-32-32-20",
+#              "room-32-32-4"]
+
 markers = {
     "BBMOCBS-k (k=5)": 'o',
     "BBMOCBS-k (k=10)": 'x',
@@ -51,6 +54,8 @@ linestyles = {
     "BBMOCBS-pex": 'dotted',
     "LCBS": 'solid',
 }
+map_names = ["random-32-32-20",
+             "room-32-32-4"]
 
 for map_name in map_names:
     # Plot configuration
