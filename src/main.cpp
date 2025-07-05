@@ -46,12 +46,22 @@ desc.add_options()
     ("c3", po::value<std::string>()->default_value(""), "cost map 3")
     ("c4", po::value<std::string>()->default_value(""), "cost map 4")
     ("c5", po::value<std::string>()->default_value(""), "cost map 5")
+    ("c6", po::value<std::string>()->default_value(""), "cost map 6")
+    ("c7", po::value<std::string>()->default_value(""), "cost map 7")
+    ("c8", po::value<std::string>()->default_value(""), "cost map 8")
+    ("c9", po::value<std::string>()->default_value(""), "cost map 9")
+    ("c10", po::value<std::string>()->default_value(""), "cost map 10")
 
     ("eps1", po::value<double>()->default_value(0.1), "eps1 (slack for cost 1)")
     ("eps2", po::value<double>()->default_value(0.1), "eps2 (slack for cost 2)")
     ("eps3", po::value<double>()->default_value(0.1), "eps3 (slack for cost 3)")
     ("eps4", po::value<double>()->default_value(0.1), "eps4 (slack for cost 4)")
     ("eps5", po::value<double>()->default_value(0.1), "eps5 (slack for cost 5)")
+    ("eps6", po::value<double>()->default_value(0.1), "eps6 (slack for cost 6)")
+    ("eps7", po::value<double>()->default_value(0.1), "eps7 (slack for cost 7)")
+    ("eps8", po::value<double>()->default_value(0.1), "eps8 (slack for cost 8)")
+    ("eps9", po::value<double>()->default_value(0.1), "eps9 (slack for cost 9)")
+    ("eps10", po::value<double>()->default_value(0.1), "eps10 (slack for cost 10)")
 
     ("CB", po::value<std::string>()->default_value("true"), "if conflict-based")
     ("eager", po::value<std::string>()->default_value("true"), "if eager")
@@ -95,6 +105,12 @@ double eps2 = vm["eps2"].as<double>();
 double eps3 = vm["eps3"].as<double>();
 double eps4 = vm["eps4"].as<double>();
 double eps5 = vm["eps5"].as<double>();
+double eps6 = vm["eps6"].as<double>();
+double eps7 = vm["eps7"].as<double>();
+double eps8 = vm["eps8"].as<double>();
+double eps9 = vm["eps9"].as<double>();
+double eps10 = vm["eps10"].as<double>();
+
 MergingStrategy ms = vm["CB"].as<std::string>() == "true" ? MergingStrategy::CONFLICT_BASED : MergingStrategy::MORE_SLACK;
 bool if_eager = vm["eager"].as<std::string>() == "true" ? true : false;
 int turn_dim = vm["turn_dim"].as<int>();
@@ -133,7 +149,7 @@ if(vm["algorithm"].as<std::string>() == "BBMOCBS-eps"){
     ((kSolver*)h_solver.get())->set_solution_num(vm["solution_num"].as<int>());
 }else if(vm["algorithm"].as<std::string>() == "LCBS"){
     h_solver = std::make_unique<lcbsSolver>(map.graph_size, vm["agent_num"].as<int>(), Algorithm::LCBS, if_eager, dim, turn_dim, vm["turn_cost"].as<int>(), vm["time_limit"].as<int>());
-    ((lcbsSolver*)h_solver.get())->set_eps(eps1, eps2, eps3, eps4, eps5);
+    ((lcbsSolver*)h_solver.get())->set_eps(eps1, eps2, eps3, eps4, eps5, eps6, eps7, eps8, eps9, eps10);
     ((lcbsSolver*)h_solver.get())->set_merging_strategy(ms);
     ((lcbsSolver*)h_solver.get())->set_solution_num(vm["solution_num"].as<int>());
 }else{
@@ -162,16 +178,10 @@ SuccessFlag = std::get<5>(result);
 
 // output << std::endl;
 output << std::endl;
-// output << "HLMergingTime = " << HLMergingTime << std::endl;
-// output << "LowLevelTime = " << LowLevelTime << std::endl;
-// output << "Total Time = " << TotalTime << std::endl;
-// output << "ConflictSolvingNum = " << ConflictSolvingNum << std::endl;
-// output << "SolutionNum = " << SolutionNum << std::endl;
 output << "Algorithm = " << vm["algorithm"].as<std::string>() << std::endl;
 output << "Agents = " << vm["agent_num"].as<int>() << std::endl;
 output << "SuccessFlag = " << (SuccessFlag ? "True" : "False") << std::endl;
 output << "------" << std::endl;
-std::cout << "SuccessFlag (Pullu-added) = " << (SuccessFlag ? "True" : "False") << std::endl;
 
 std::cout << "FINISH ONCE" << std::endl;
 

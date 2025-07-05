@@ -1,0 +1,14 @@
+Algorithm,Agents,SuccessCount,Total,SuccessRate
+
+LCBS -k 1 -d 5,5,20,25,0
+
+LCBS -k 1 -d 6,5,20,25,0
+
+LCBS -k 1 -d 7,5,20,25,0
+
+LCBS -k 1 -d 8,5,20,25,0
+
+LCBS -k 1 -d 9,5,20,25,0
+
+LCBS -k 1 -d 10,5,20,25,0
+

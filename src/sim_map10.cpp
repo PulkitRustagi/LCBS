@@ -5,7 +5,7 @@
 #include <vector>
 #include <cstdlib>
 
-std::string time_lim = "120"; // seconds
+std::string time_lim = "300"; // seconds
 std::string map_name = "room-64-64-8";
 
 std::string map_file = "../maps/"+map_name+"/"+map_name+".map";
@@ -14,6 +14,11 @@ std::string cost2 = "../maps/"+map_name+"/random-2.cost";
 std::string cost3 = "../maps/"+map_name+"/random-3.cost";
 std::string cost4 = "../maps/"+map_name+"/random-4.cost";
 std::string cost5 = "../maps/"+map_name+"/random-5.cost";
+std::string cost6 = "../maps/"+map_name+"/random-6.cost";
+std::string cost7 = "../maps/"+map_name+"/random-7.cost";
+std::string cost8 = "../maps/"+map_name+"/random-8.cost";
+std::string cost9 = "../maps/"+map_name+"/random-9.cost";
+std::string cost10 = "../maps/"+map_name+"/random-10.cost";
 std::string scen_dir = "../maps/"+map_name+"/scen-random";
 std::string output_file = "../data/"+map_name+"_output_log_"+time_lim+"sec.txt";
 std::string binary = "./bin/bbmocbs_approx";
@@ -22,7 +27,6 @@ std::string make_command(const std::string& scen_file, int agent_num, const std:
     std::ostringstream cmd;
     cmd << binary
         << " -m " << map_file
-        << " -d 4"
         << " -s " << scen_dir << "/" << scen_file
         << " -e 0.03"
         << " --c1 " << cost1
@@ -30,6 +34,11 @@ std::string make_command(const std::string& scen_file, int agent_num, const std:
         << " --c3 " << cost3
         << " --c4 " << cost4
         << " --c5 " << cost5
+        << " --c6 " << cost6
+        << " --c7 " << cost7
+        << " --c8 " << cost8
+        << " --c9 " << cost9
+        << " --c10 " << cost10
         << " --CB true"
         << " --eager true"
         << " -t "+time_lim
@@ -40,7 +49,12 @@ std::string make_command(const std::string& scen_file, int agent_num, const std:
 }
 
 std::string clean_algorithm_name(const std::string& algo) {
-    if (algo == "LCBS -k 1") return "LCBS";
+    if (algo == "LCBS -k 1 -d 5") return "LCBS 5D";
+    if (algo == "LCBS -k 1 -d 6") return "LCBS 6D";
+    if (algo == "LCBS -k 1 -d 7") return "LCBS 7D";
+    if (algo == "LCBS -k 1 -d 8") return "LCBS 8D";
+    if (algo == "LCBS -k 1 -d 9") return "LCBS 9D";
+    if (algo == "LCBS -k 1 -d 10") return "LCBS 10D";
 
     std::ostringstream cleaned;
     for (size_t i = 0; i < algo.size(); ++i) {
@@ -133,8 +147,8 @@ void write_run_outcomes(const std::string& output_file, const std::string& algo_
 
 
 int main() {
-    std::vector<std::string> algorithms = {"LCBS -k 1", "BBMOCBS-k -k 1", "BBMOCBS-k -k 5", "BBMOCBS-k -k 10", "BBMOCBS-eps", "BBMOCBS-pex"};
-    std::vector<int> agent_counts = {5, 10, 15, 20, 25, 30, 35};
+    std::vector<std::string> algorithms = {"LCBS -k 1 -d 5", "LCBS -k 1 -d 6", "LCBS -k 1 -d 7", "LCBS -k 1 -d 8", "LCBS -k 1 -d 9", "LCBS -k 1 -d 10"};
+    std::vector<int> agent_counts = {5};//, 10, 15, 20, 25, 30, 35};
     int total_runs = 25;
 
     std::ofstream summary("../data/results_"+map_name+"_"+time_lim+"sec.txt", std::ios::app);

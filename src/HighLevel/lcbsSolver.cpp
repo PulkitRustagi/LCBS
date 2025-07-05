@@ -32,9 +32,9 @@ void lcbsSolver::MergeJointPaths(HighLevelNodePtr node,
     // double eps3 = this->eps3;   // tolerance for cost[2]
     // double eps4 = this->eps4;   // tolerance for cost[3]
     // double eps5 = this->eps5;   // tolerance for cost[4]
-    std::cout << "\033[1;31m"
-              << "eps1 = " << eps1 << ", eps2 = " << eps2 << ", eps3 = " << eps3 << ", eps4 = " << eps4 << ", eps5 = " << eps5
-              << "\033[0m" << std::endl;
+    // std::cout << "\033[1;31m"
+    //           << "eps1 = " << eps1 << ", eps2 = " << eps2 << ", eps3 = " << eps3 << ", eps4 = " << eps4 << ", eps5 = " << eps5
+    //           << "\033[0m" << std::endl;
 
     std::chrono::high_resolution_clock::time_point _t1 = std::chrono::high_resolution_clock::now();
 
@@ -84,7 +84,8 @@ void lcbsSolver::MergeJointPaths(HighLevelNodePtr node,
 
         /* keep lexicographically best candidates */
         apex_idx_combos.sort([](const auto& a,const auto& b){ return less_than_pair(a,b); });
-        LexFilter(apex_idx_combos, eps1, eps2, eps3, eps4, eps5);
+        LexFilter(apex_idx_combos, eps1, eps2, eps3, eps4, eps5,
+                  eps6, eps7, eps8, eps9, eps10);
 
         /* OPTIONAL –– cap list length (maintains earliest elements) */
         while ((int)apex_idx_combos.size() > solution_num)
@@ -105,7 +106,8 @@ void lcbsSolver::MergeJointPaths(HighLevelNodePtr node,
 
 /********************  NEW  ––  Lexicographic filter  ********************/
 void lcbsSolver::LexFilter(std::list<std::pair<CostVector,int>>& apex_idx_combos,
-                      double eps1, double eps2, double eps3, double eps4, double eps5)
+                      double eps1, double eps2, double eps3, double eps4, double eps5,
+                        double eps6, double eps7, double eps8, double eps9, double eps10)
 {
     if (apex_idx_combos.empty()) return;
 
@@ -116,32 +118,75 @@ void lcbsSolver::LexFilter(std::list<std::pair<CostVector,int>>& apex_idx_combos
     apex_idx_combos.remove_if([&](const auto& p){ return p.first[0] > min0 * (1 + eps1); });
 
     /* -------- second objective (index 1) -------- */
+    if (apex_idx_combos.front().first.size() >= 0) {
     auto min1 = std::min_element(apex_idx_combos.begin(), apex_idx_combos.end(),
                                  [](const auto& a, const auto& b){ return a.first[1] < b.first[1]; })
                                  ->first[1];
     apex_idx_combos.remove_if([&](const auto& p){ return p.first[1] > min1 * (1 + eps2); });
+    }
 
     /* --------- third objective (index 2) -------- */
+    if (apex_idx_combos.front().first.size() >= 1) {
     auto min2 = std::min_element(apex_idx_combos.begin(), apex_idx_combos.end(),
                                  [](const auto& a, const auto& b){ return a.first[2] < b.first[2]; })
                                  ->first[2];
     apex_idx_combos.remove_if([&](const auto& p){ return p.first[2] > min2 * (1 + eps3); });
+    }
 
     /* --------- fifth objective (index 3) -------- */
+    if (apex_idx_combos.front().first.size() >= 2) {
     auto min3 = std::min_element(apex_idx_combos.begin(), apex_idx_combos.end(),
                                  [](const auto& a, const auto& b){ return a.first[3] < b.first[3]; })
                                  ->first[3];
     apex_idx_combos.remove_if([&](const auto& p){ return p.first[3] > min3 * (1 + eps4); });
-
-    /* --------- fourth objective (index 4) -------- */
-    if (apex_idx_combos.front().first.size() > 4) {
-        auto min4 = std::min_element(apex_idx_combos.begin(), apex_idx_combos.end(),
-                                     [](const auto& a, const auto& b){ return a.first[4] < b.first[4]; })
-                                     ->first[4];
-        apex_idx_combos.remove_if([&](const auto& p){ return p.first[4] > min4 * (1 + eps5); });
     }
 
+    /* --------- fourth objective (index 4) -------- */
+    if (apex_idx_combos.front().first.size() >= 3) {
+    auto min4 = std::min_element(apex_idx_combos.begin(), apex_idx_combos.end(),
+                                 [](const auto& a, const auto& b){ return a.first[4] < b.first[4]; })
+                                 ->first[4];
+    apex_idx_combos.remove_if([&](const auto& p){ return p.first[4] > min4 * (1 + eps5); });
+    }
+
+    /* --------- sixth objective (index 5) -------- */
+    if (apex_idx_combos.front().first.size() >= 4) {
+    auto min5 = std::min_element(apex_idx_combos.begin(), apex_idx_combos.end(),
+                                 [](const auto& a, const auto& b){ return a.first[5] < b.first[5]; })
+                                 ->first[5];
+    apex_idx_combos.remove_if([&](const auto& p){ return p.first[5] > min5 * (1 + eps6); });
+    }
+
+    /* --------- seventh objective (index 6) -------- */
+    if (apex_idx_combos.front().first.size() >= 5) {
+    auto min6 = std::min_element(apex_idx_combos.begin(), apex_idx_combos.end(),
+                                 [](const auto& a, const auto& b){ return a.first[6] < b.first[6]; })
+                                 ->first[6];
+    apex_idx_combos.remove_if([&](const auto& p){ return p.first[6] > min6 * (1 + eps7); });
+    }
+    /* --------- eighth objective (index 7) -------- */
+    if (apex_idx_combos.front().first.size() >= 6) {
+    auto min7 = std::min_element(apex_idx_combos.begin(), apex_idx_combos.end(),
+                                 [](const auto& a, const auto& b){ return a.first[7] < b.first[7]; })
+                                 ->first[7];
+    apex_idx_combos.remove_if([&](const auto& p){ return p.first[7] > min7 * (1 + eps8); });
+    }
+    /* --------- ninth objective (index 8) -------- */
+    if (apex_idx_combos.front().first.size() >= 7) {
+    auto min8 = std::min_element(apex_idx_combos.begin(), apex_idx_combos.end(),
+                                 [](const auto& a, const auto& b){ return a.first[8] < b.first[8]; })
+                                 ->first[8];
+    apex_idx_combos.remove_if([&](const auto& p){ return p.first[8] > min8 * (1 + eps9); });
+    }
+    /* --------- tenth objective (index 9) -------- */
+    if (apex_idx_combos.front().first.size() >= 8) {
+        auto min9 = std::min_element(apex_idx_combos.begin(), apex_idx_combos.end(),
+                                     [](const auto& a, const auto& b){ return a.first[9] < b.first[9]; })
+                                     ->first[9];
+        apex_idx_combos.remove_if([&](const auto& p){ return p.first[9] > min9 * (1 + eps10); });
+    }
 }
+
 /*************************************************************************/
 
 // A*pex version
