@@ -6,6 +6,8 @@ def clean_algo_name(algo_name):
     """Clean the algorithm name for better readability on the plots."""
     if algo_name == "LCBS -k 1":
         return "LCBS"
+    elif algo_name == "BBMOCBS-k -k 1":
+        return "BBMOCBS-k (k=1)"
     elif algo_name == "BBMOCBS-k -k 5":
         return "BBMOCBS-k (k=5)"
     elif algo_name == "BBMOCBS-k -k 10":
@@ -34,6 +36,7 @@ map_names = ["empty-32-32",
 #              "room-32-32-4"]
 
 markers = {
+    "BBMOCBS-k (k=1)": 'D',
     "BBMOCBS-k (k=5)": 'o',
     "BBMOCBS-k (k=10)": 'x',
     "BBMOCBS-eps": 's',
@@ -41,6 +44,7 @@ markers = {
     "LCBS": 'P',
 }   
 colors = {
+    "BBMOCBS-k (k=1)": 'gold',
     "BBMOCBS-k (k=5)": 'black',
     "BBMOCBS-k (k=10)": 'gray',
     "BBMOCBS-eps": 'cyan',
@@ -48,6 +52,7 @@ colors = {
     "LCBS": 'red',
 }
 linestyles = {
+    "BBMOCBS-k (k=1)": 'dotted',
     "BBMOCBS-k (k=5)": 'dotted',
     "BBMOCBS-k (k=10)": 'dotted',
     "BBMOCBS-eps": 'dotted', 
@@ -67,6 +72,7 @@ for map_name in map_names:
     for algo in data['Algorithm'].unique():
         subset = data[data['Algorithm'] == algo]
         algo_name = clean_algo_name(algo)  
+        print(f"Plotting {algo_name} for {map_name} with {len(subset)} data points")
         plt.plot(
             subset['Agents'],
             subset['SuccessRate'],
@@ -97,11 +103,12 @@ for map_name in map_names:
 # save legend separately as a box with 1 row and 5 columns as a png file
 plt.figure(figsize=(4, 0.5))
 plt.plot([], [], marker='P', color='red', linestyle='solid', label='LCBS', markersize=10, linewidth=3)
+plt.plot([], [], marker='D', color='gold', linestyle='dotted', label='BBMOCBS-k (k=1)', markersize=10, linewidth=3)
 plt.plot([], [], marker='o', color='black', linestyle='dotted', label='BBMOCBS-k (k=5)', markersize=10, linewidth=3)
 plt.plot([], [], marker='x', color='gray', linestyle='dotted', label='BBMOCBS-k (k=10)', markersize=10, linewidth=3)
 plt.plot([], [], marker='s', color='cyan', linestyle='dotted', label='BBMOCBS-eps', markersize=10, linewidth=3)
 plt.plot([], [], marker='v', color='blue', linestyle='dotted', label='BBMOCBS-pex', markersize=10, linewidth=3)
-plt.legend(loc="center", fontsize=16, title_fontsize=16, ncol=5)
+plt.legend(loc="center", fontsize=16, title_fontsize=16, ncol=6)
 plt.axis('off')
 plt.tight_layout()
 plt.savefig("../figures/benchmarks/legend.png", dpi=150, bbox_inches='tight')
