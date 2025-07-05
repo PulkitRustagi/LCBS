@@ -54,8 +54,8 @@ linestyles = {
     "BBMOCBS-pex": 'dotted',
     "LCBS": 'solid',
 }
-map_names = ["random-32-32-20",
-             "room-32-32-4"]
+# map_names = ["random-32-32-20",
+#              "room-32-32-4"]
 
 for map_name in map_names:
     # Plot configuration
@@ -91,7 +91,7 @@ for map_name in map_names:
     plt.tight_layout()
 
     # Save plot
-    plt.savefig("../figures/benchmarks/"+map_name+".png", dpi=150)
+    plt.savefig("../figures/benchmarks/"+map_name+"_4D.png", dpi=150)
     # plt.show()
 
 # save legend separately as a box with 1 row and 5 columns as a png file

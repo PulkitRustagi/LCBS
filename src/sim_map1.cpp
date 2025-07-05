@@ -133,7 +133,7 @@ void write_run_outcomes(const std::string& output_file, const std::string& algo_
 
 
 int main() {
-    std::vector<std::string> algorithms = {"LCBS -k 1", "BBMOCBS-k -k 5", "BBMOCBS-k -k 10", "BBMOCBS-eps", "BBMOCBS-pex"};
+    std::vector<std::string> algorithms = {"LCBS -k 1", "BBMOCBS-k -k 1", "BBMOCBS-k -k 5", "BBMOCBS-k -k 10", "BBMOCBS-eps", "BBMOCBS-pex"};
     std::vector<int> agent_counts = {5, 10, 15, 20, 25, 30, 35};
     int total_runs = 25;
 
