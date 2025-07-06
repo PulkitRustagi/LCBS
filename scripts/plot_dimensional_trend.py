@@ -5,8 +5,8 @@ from matplotlib import cm
 from mpl_toolkits.mplot3d import Axes3D  # needed even if not used directly
 
 # Input data folder and output figures folder
-data_folder = "../data/dimensional_trends/random-32-32-20"
-figure_folder = "../figures/contours"
+data_folder = "../data/dimensional_trends/custom-32-32"
+figure_folder = "../figures/contours/custom-32-32"
 os.makedirs(figure_folder, exist_ok=True)
 
 # Mapping of method display names to file names
