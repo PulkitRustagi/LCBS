@@ -24,7 +24,7 @@ algorith_name = {
     "BBMOCBS-k_1": "BBMOCBS-k (k=1)",
     "BBMOCBS-k_5": "BBMOCBS-k (k=5)",
     "BBMOCBS-k_10": "BBMOCBS-k (k=10)",
-    "BBMOCBS-eps": "BBMOCBS-eps",
+    "BBMOCBS-eps": r"BBMOCBS-$\epsilon$",
     "BBMOCBS-pex": "BBMOCBS-pex"
 }
 
