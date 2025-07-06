@@ -108,7 +108,7 @@ plt.plot([], [], marker='o', color='black', linestyle='dotted', label='BBMOCBS-k
 plt.plot([], [], marker='x', color='gray', linestyle='dotted', label='BBMOCBS-k (k=10)', markersize=10, linewidth=3)
 plt.plot([], [], marker='s', color='cyan', linestyle='dotted', label='BBMOCBS-eps', markersize=10, linewidth=3)
 plt.plot([], [], marker='v', color='blue', linestyle='dotted', label='BBMOCBS-pex', markersize=10, linewidth=3)
-plt.legend(loc="center", fontsize=16, title_fontsize=16, ncol=6)
+plt.legend(loc="center", fontsize=16, title_fontsize=16, ncol=3)
 plt.axis('off')
 plt.tight_layout()
 plt.savefig("../figures/benchmarks/legend.png", dpi=150, bbox_inches='tight')
