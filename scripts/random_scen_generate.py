@@ -25,7 +25,7 @@ def generate_scenario_files(map_file, output_dir, num_scenarios=10, agents_per_s
         starts = sampled[:agents_per_scenario]
         goals = sampled[agents_per_scenario:]
 
-        output_path = os.path.join(output_dir, f"{map_name.replace('.map', '')}-random-{scen_num}.scen")
+        output_path = os.path.join(output_dir, f"{map_name.replace('.map', '')}-random-{scen_num+1  }.scen")
         with open(output_path, "w") as f:
             f.write("version 1\n")
             for agent_id, (start, goal) in enumerate(zip(starts, goals)):

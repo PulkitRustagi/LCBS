@@ -150,7 +150,7 @@ void write_run_outcomes(const std::string& output_file, const std::string& algo_
 int main() {
     std::vector<std::string> algorithms = {"LCBS -k 1", "BBMOCBS-k -k 1", "BBMOCBS-k -k 5", "BBMOCBS-k -k 10", "BBMOCBS-eps", "BBMOCBS-pex"};//{"LCBS -k 1 -d 5", "LCBS -k 1 -d 6", "LCBS -k 1 -d 7", "LCBS -k 1 -d 8", "LCBS -k 1 -d 9", "LCBS -k 1 -d 10"};
     std::vector<int> agent_counts = {5, 10, 15, 20, 25, 30, 35};
-    int total_runs = 25;
+    int total_runs = 10;
 
     std::ofstream summary("../data/results_"+map_name+"_"+time_lim+"sec.txt", std::ios::app);
     summary.seekp(0, std::ios::end);
