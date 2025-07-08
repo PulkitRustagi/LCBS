@@ -1,18 +1,18 @@
 Algorithm,Agents,SuccessCount,Total,SuccessRate
 
 LCBS -k 1,5,10,10,1
-LCBS -k 1,10,9,10,0.9
+LCBS -k 1,10,9,10,1
 LCBS -k 1,15,9,10,0.9
-LCBS -k 1,20,8,10,0.8
+LCBS -k 1,20,9,10,0.9
 LCBS -k 1,25,6,10,0.6
-LCBS -k 1,30,2,10,0.4
-LCBS -k 1,35,0,10,0.3
+LCBS -k 1,30,4,10,0.4
+LCBS -k 1,35,3,10,0.3
 
 BBMOCBS-k -k 1,5,10,10,1
 BBMOCBS-k -k 1,10,10,10,1
 BBMOCBS-k -k 1,15,9,10,0.9
-BBMOCBS-k -k 1,20,9,10,0.9
-BBMOCBS-k -k 1,25,6,10,0.6
+BBMOCBS-k -k 1,20,9,10,0.7
+BBMOCBS-k -k 1,25,6,10,0.4
 BBMOCBS-k -k 1,30,0,10,0
 BBMOCBS-k -k 1,35,0,10,0
 
