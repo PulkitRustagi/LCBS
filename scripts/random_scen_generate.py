@@ -32,5 +32,19 @@ def generate_scenario_files(map_file, output_dir, num_scenarios=10, agents_per_s
                 distance = ((start[0] - goal[0]) ** 2 + (start[1] - goal[1]) ** 2) ** 0.5
                 f.write(f"{agent_id}\t{map_name}\t{width}\t{height}\t{start[0]}\t{start[1]}\t{goal[0]}\t{goal[1]}\t{distance:.8f}\n")
 
-# Example usage:
-generate_scenario_files("../maps/custom-32-32-2/custom-32-32-2.map", "../maps/custom-32-32-2/scen-random")
+map_names = ["empty-32-32", 
+             "empty-48-48",
+             "maze-32-32-2",
+             "maze-32-32-4",
+             "random-32-32-20",
+             "random-64-64-10",
+             "random-64-64-20",
+             "room-32-32-4",
+             "room-64-64-16",
+             "room-64-64-8"]
+map_names = ["maze-32-32-4"]
+for map_name in map_names:
+    map_path = f"../maps_rand_scen/{map_name}/{map_name}.map"
+    output_dir = f"../maps_rand_scen/{map_name}/scen-random"
+    generate_scenario_files(map_path, output_dir, num_scenarios=10)
+
