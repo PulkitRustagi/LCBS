@@ -5,22 +5,22 @@
 #include <vector>
 #include <cstdlib>
 
-std::string time_lim = "120"; // seconds
+std::string time_lim = "300"; // seconds
 std::string map_name = "empty-32-32";
 
-std::string map_file = "../maps_rand_scen/"+map_name+"/"+map_name+".map";
-std::string cost1 = "../maps_rand_scen/"+map_name+"/random-1.cost";
-std::string cost2 = "../maps_rand_scen/"+map_name+"/random-2.cost";
-std::string cost3 = "../maps_rand_scen/"+map_name+"/random-3.cost";
-std::string cost4 = "../maps_rand_scen/"+map_name+"/random-4.cost";
-std::string cost5 = "../maps_rand_scen/"+map_name+"/random-5.cost";
-std::string cost6 = "../maps_rand_scen/"+map_name+"/random-6.cost";
-std::string cost7 = "../maps_rand_scen/"+map_name+"/random-7.cost";
-std::string cost8 = "../maps_rand_scen/"+map_name+"/random-8.cost";
-std::string cost9 = "../maps_rand_scen/"+map_name+"/random-9.cost";
-std::string cost10 = "../maps_rand_scen/"+map_name+"/random-10.cost";
-std::string scen_dir = "../maps_rand_scen/"+map_name+"/scen-random";
-std::string output_file = "../data/"+map_name+"_output_log_"+time_lim+"sec.txt";
+std::string map_file = "../maps/"+map_name+"/"+map_name+".map";
+std::string cost1 = "../maps/"+map_name+"/random-1.cost";
+std::string cost2 = "../maps/"+map_name+"/random-2.cost";
+std::string cost3 = "../maps/"+map_name+"/random-3.cost";
+std::string cost4 = "../maps/"+map_name+"/random-4.cost";
+std::string cost5 = "../maps/"+map_name+"/random-5.cost";
+std::string cost6 = "../maps/"+map_name+"/random-6.cost";
+std::string cost7 = "../maps/"+map_name+"/random-7.cost";
+std::string cost8 = "../maps/"+map_name+"/random-8.cost";
+std::string cost9 = "../maps/"+map_name+"/random-9.cost";
+std::string cost10 = "../maps/"+map_name+"/random-10.cost";
+std::string scen_dir = "../maps/"+map_name+"/scen-random";
+std::string output_file = "../data/LOG_CONTOUR_"+map_name+"_output_log_"+time_lim+"sec.txt";
 std::string binary = "./bin/bbmocbs_approx";
 
 std::string make_command(const std::string& scen_file, int agent_num, const std::string& algorithm) {
@@ -28,7 +28,6 @@ std::string make_command(const std::string& scen_file, int agent_num, const std:
     cmd << binary
         << " -m " << map_file
         << " -s " << scen_dir << "/" << scen_file
-        << " -d 3"
         << " -e 0.03"
         << " --c1 " << cost1
         << " --c2 " << cost2
@@ -50,6 +49,9 @@ std::string make_command(const std::string& scen_file, int agent_num, const std:
 }
 
 std::string clean_algorithm_name(const std::string& algo) {
+    if (algo == "LCBS -k 1 -d 5") return "LCBS 2D";
+    if (algo == "LCBS -k 1 -d 5") return "LCBS 3D";
+    if (algo == "LCBS -k 1 -d 5") return "LCBS 4D";
     if (algo == "LCBS -k 1 -d 5") return "LCBS 5D";
     if (algo == "LCBS -k 1 -d 6") return "LCBS 6D";
     if (algo == "LCBS -k 1 -d 7") return "LCBS 7D";
@@ -148,13 +150,13 @@ void write_run_outcomes(const std::string& output_file, const std::string& algo_
 
 
 int main() {
-    std::vector<std::string> algorithms = {"LCBS -k 1", "BBMOCBS-k -k 1", "BBMOCBS-k -k 5", "BBMOCBS-k -k 10", "BBMOCBS-eps", "BBMOCBS-pex"};//{"LCBS -k 1 -d 5", "LCBS -k 1 -d 6", "LCBS -k 1 -d 7", "LCBS -k 1 -d 8", "LCBS -k 1 -d 9", "LCBS -k 1 -d 10"};
+    std::vector<std::string> algorithms = {"LCBS -k 1 -d 2", "LCBS -k 1 -d 3", "LCBS -k 1 -d 4", "LCBS -k 1 -d 5", "LCBS -k 1 -d 6", "LCBS -k 1 -d 7", "LCBS -k 1 -d 8", "LCBS -k 1 -d 9", "LCBS -k 1 -d 10"};
     std::vector<int> agent_counts = {5, 10, 15, 20, 25, 30, 35};
     int total_runs = 10;
 
-    std::ofstream summary("../data/rand_scen_results/results_rand_scen_"+map_name+"_"+time_lim+"sec.txt", std::ios::app);
+    std::ofstream summary("../data/dimensional_trends/"+map_name+"/LCBS_new.txt", std::ios::app);
     summary.seekp(0, std::ios::end);
-    summary << "Algorithm,Agents,SuccessCount,Total,SuccessRate\n\n";
+    summary << "Objectives,Agents,SuccessRate\n\n";
 
     for (const auto& algorithm : algorithms) {
         for (int agents : agent_counts) {
@@ -169,15 +171,17 @@ int main() {
             
             write_run_outcomes(output_file, algorithm, agents);
 
+            //last number is the algorithms name is the number of objectives for eg. "LCBS -k 1 -d 10" means 10 objectives
+            std::string objectives = algorithm.substr(algorithm.find_last_of('-') + 3);
+
             int success_count = count_successes(output_file);
             double rate = success_count / static_cast<double>(total_runs);
 
-            summary << algorithm << "," << agents << "," << success_count
-                    << "," << total_runs << "," << rate << "\n";
-            std::cout << "Algorithm: " << algorithm
+            summary << objectives << "," << agents << "," << rate << "\n";
+            std::cout << "\n===> Algorithm: " << algorithm
                       << " | Agents: " << agents
                       << " | Success: " << success_count << "/" << total_runs
-                      << " (" << rate * 100 << "%)\n";
+                      << " (" << rate * 100 << "%)\n\n";
 
             std::ofstream clear_file(output_file, std::ios::trunc);
             clear_file.close();

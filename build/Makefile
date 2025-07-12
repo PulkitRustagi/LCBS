@@ -130,19 +130,6 @@ bbmocbs_approx/fast:
 .PHONY : bbmocbs_approx/fast
 
 #=============================================================================
-# Target rules for targets named vary_eps_LCBS
-
-# Build rule for target.
-vary_eps_LCBS: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 vary_eps_LCBS
-.PHONY : vary_eps_LCBS
-
-# fast build rule for target.
-vary_eps_LCBS/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/vary_eps_LCBS.dir/build.make CMakeFiles/vary_eps_LCBS.dir/build
-.PHONY : vary_eps_LCBS/fast
-
-#=============================================================================
 # Target rules for targets named sim_on_map1
 
 # Build rule for target.
@@ -258,123 +245,6 @@ sim_on_map9: cmake_check_build_system
 sim_on_map9/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/sim_on_map9.dir/build.make CMakeFiles/sim_on_map9.dir/build
 .PHONY : sim_on_map9/fast
-
-#=============================================================================
-# Target rules for targets named sim_on_map10
-
-# Build rule for target.
-sim_on_map10: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 sim_on_map10
-.PHONY : sim_on_map10
-
-# fast build rule for target.
-sim_on_map10/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/sim_on_map10.dir/build.make CMakeFiles/sim_on_map10.dir/build
-.PHONY : sim_on_map10/fast
-
-#=============================================================================
-# Target rules for targets named sim_on_map11_1
-
-# Build rule for target.
-sim_on_map11_1: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 sim_on_map11_1
-.PHONY : sim_on_map11_1
-
-# fast build rule for target.
-sim_on_map11_1/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/sim_on_map11_1.dir/build.make CMakeFiles/sim_on_map11_1.dir/build
-.PHONY : sim_on_map11_1/fast
-
-#=============================================================================
-# Target rules for targets named sim_on_map11_2
-
-# Build rule for target.
-sim_on_map11_2: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 sim_on_map11_2
-.PHONY : sim_on_map11_2
-
-# fast build rule for target.
-sim_on_map11_2/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/sim_on_map11_2.dir/build.make CMakeFiles/sim_on_map11_2.dir/build
-.PHONY : sim_on_map11_2/fast
-
-#=============================================================================
-# Target rules for targets named sim_on_map11_3
-
-# Build rule for target.
-sim_on_map11_3: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 sim_on_map11_3
-.PHONY : sim_on_map11_3
-
-# fast build rule for target.
-sim_on_map11_3/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/sim_on_map11_3.dir/build.make CMakeFiles/sim_on_map11_3.dir/build
-.PHONY : sim_on_map11_3/fast
-
-#=============================================================================
-# Target rules for targets named sim_on_map11_4
-
-# Build rule for target.
-sim_on_map11_4: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 sim_on_map11_4
-.PHONY : sim_on_map11_4
-
-# fast build rule for target.
-sim_on_map11_4/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/sim_on_map11_4.dir/build.make CMakeFiles/sim_on_map11_4.dir/build
-.PHONY : sim_on_map11_4/fast
-
-#=============================================================================
-# Target rules for targets named sim_on_map11_5
-
-# Build rule for target.
-sim_on_map11_5: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 sim_on_map11_5
-.PHONY : sim_on_map11_5
-
-# fast build rule for target.
-sim_on_map11_5/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/sim_on_map11_5.dir/build.make CMakeFiles/sim_on_map11_5.dir/build
-.PHONY : sim_on_map11_5/fast
-
-#=============================================================================
-# Target rules for targets named sim_on_map11_6
-
-# Build rule for target.
-sim_on_map11_6: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 sim_on_map11_6
-.PHONY : sim_on_map11_6
-
-# fast build rule for target.
-sim_on_map11_6/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/sim_on_map11_6.dir/build.make CMakeFiles/sim_on_map11_6.dir/build
-.PHONY : sim_on_map11_6/fast
-
-#=============================================================================
-# Target rules for targets named sim_on_map11_7
-
-# Build rule for target.
-sim_on_map11_7: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 sim_on_map11_7
-.PHONY : sim_on_map11_7
-
-# fast build rule for target.
-sim_on_map11_7/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/sim_on_map11_7.dir/build.make CMakeFiles/sim_on_map11_7.dir/build
-.PHONY : sim_on_map11_7/fast
-
-#=============================================================================
-# Target rules for targets named sim_on_map11_8
-
-# Build rule for target.
-sim_on_map11_8: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 sim_on_map11_8
-.PHONY : sim_on_map11_8
-
-# fast build rule for target.
-sim_on_map11_8/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/sim_on_map11_8.dir/build.make CMakeFiles/sim_on_map11_8.dir/build
-.PHONY : sim_on_map11_8/fast
 
 src/Definitions.o: src/Definitions.cpp.o
 .PHONY : src/Definitions.o
@@ -880,222 +750,6 @@ src/sim_map1.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/sim_on_map1.dir/build.make CMakeFiles/sim_on_map1.dir/src/sim_map1.cpp.s
 .PHONY : src/sim_map1.cpp.s
 
-src/sim_map10.o: src/sim_map10.cpp.o
-.PHONY : src/sim_map10.o
-
-# target to build an object file
-src/sim_map10.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/sim_on_map10.dir/build.make CMakeFiles/sim_on_map10.dir/src/sim_map10.cpp.o
-.PHONY : src/sim_map10.cpp.o
-
-src/sim_map10.i: src/sim_map10.cpp.i
-.PHONY : src/sim_map10.i
-
-# target to preprocess a source file
-src/sim_map10.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/sim_on_map10.dir/build.make CMakeFiles/sim_on_map10.dir/src/sim_map10.cpp.i
-.PHONY : src/sim_map10.cpp.i
-
-src/sim_map10.s: src/sim_map10.cpp.s
-.PHONY : src/sim_map10.s
-
-# target to generate assembly for a file
-src/sim_map10.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/sim_on_map10.dir/build.make CMakeFiles/sim_on_map10.dir/src/sim_map10.cpp.s
-.PHONY : src/sim_map10.cpp.s
-
-src/sim_map11_1.o: src/sim_map11_1.cpp.o
-.PHONY : src/sim_map11_1.o
-
-# target to build an object file
-src/sim_map11_1.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/sim_on_map11_1.dir/build.make CMakeFiles/sim_on_map11_1.dir/src/sim_map11_1.cpp.o
-.PHONY : src/sim_map11_1.cpp.o
-
-src/sim_map11_1.i: src/sim_map11_1.cpp.i
-.PHONY : src/sim_map11_1.i
-
-# target to preprocess a source file
-src/sim_map11_1.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/sim_on_map11_1.dir/build.make CMakeFiles/sim_on_map11_1.dir/src/sim_map11_1.cpp.i
-.PHONY : src/sim_map11_1.cpp.i
-
-src/sim_map11_1.s: src/sim_map11_1.cpp.s
-.PHONY : src/sim_map11_1.s
-
-# target to generate assembly for a file
-src/sim_map11_1.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/sim_on_map11_1.dir/build.make CMakeFiles/sim_on_map11_1.dir/src/sim_map11_1.cpp.s
-.PHONY : src/sim_map11_1.cpp.s
-
-src/sim_map11_2.o: src/sim_map11_2.cpp.o
-.PHONY : src/sim_map11_2.o
-
-# target to build an object file
-src/sim_map11_2.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/sim_on_map11_2.dir/build.make CMakeFiles/sim_on_map11_2.dir/src/sim_map11_2.cpp.o
-.PHONY : src/sim_map11_2.cpp.o
-
-src/sim_map11_2.i: src/sim_map11_2.cpp.i
-.PHONY : src/sim_map11_2.i
-
-# target to preprocess a source file
-src/sim_map11_2.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/sim_on_map11_2.dir/build.make CMakeFiles/sim_on_map11_2.dir/src/sim_map11_2.cpp.i
-.PHONY : src/sim_map11_2.cpp.i
-
-src/sim_map11_2.s: src/sim_map11_2.cpp.s
-.PHONY : src/sim_map11_2.s
-
-# target to generate assembly for a file
-src/sim_map11_2.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/sim_on_map11_2.dir/build.make CMakeFiles/sim_on_map11_2.dir/src/sim_map11_2.cpp.s
-.PHONY : src/sim_map11_2.cpp.s
-
-src/sim_map11_3.o: src/sim_map11_3.cpp.o
-.PHONY : src/sim_map11_3.o
-
-# target to build an object file
-src/sim_map11_3.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/sim_on_map11_3.dir/build.make CMakeFiles/sim_on_map11_3.dir/src/sim_map11_3.cpp.o
-.PHONY : src/sim_map11_3.cpp.o
-
-src/sim_map11_3.i: src/sim_map11_3.cpp.i
-.PHONY : src/sim_map11_3.i
-
-# target to preprocess a source file
-src/sim_map11_3.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/sim_on_map11_3.dir/build.make CMakeFiles/sim_on_map11_3.dir/src/sim_map11_3.cpp.i
-.PHONY : src/sim_map11_3.cpp.i
-
-src/sim_map11_3.s: src/sim_map11_3.cpp.s
-.PHONY : src/sim_map11_3.s
-
-# target to generate assembly for a file
-src/sim_map11_3.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/sim_on_map11_3.dir/build.make CMakeFiles/sim_on_map11_3.dir/src/sim_map11_3.cpp.s
-.PHONY : src/sim_map11_3.cpp.s
-
-src/sim_map11_4.o: src/sim_map11_4.cpp.o
-.PHONY : src/sim_map11_4.o
-
-# target to build an object file
-src/sim_map11_4.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/sim_on_map11_4.dir/build.make CMakeFiles/sim_on_map11_4.dir/src/sim_map11_4.cpp.o
-.PHONY : src/sim_map11_4.cpp.o
-
-src/sim_map11_4.i: src/sim_map11_4.cpp.i
-.PHONY : src/sim_map11_4.i
-
-# target to preprocess a source file
-src/sim_map11_4.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/sim_on_map11_4.dir/build.make CMakeFiles/sim_on_map11_4.dir/src/sim_map11_4.cpp.i
-.PHONY : src/sim_map11_4.cpp.i
-
-src/sim_map11_4.s: src/sim_map11_4.cpp.s
-.PHONY : src/sim_map11_4.s
-
-# target to generate assembly for a file
-src/sim_map11_4.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/sim_on_map11_4.dir/build.make CMakeFiles/sim_on_map11_4.dir/src/sim_map11_4.cpp.s
-.PHONY : src/sim_map11_4.cpp.s
-
-src/sim_map11_5.o: src/sim_map11_5.cpp.o
-.PHONY : src/sim_map11_5.o
-
-# target to build an object file
-src/sim_map11_5.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/sim_on_map11_5.dir/build.make CMakeFiles/sim_on_map11_5.dir/src/sim_map11_5.cpp.o
-.PHONY : src/sim_map11_5.cpp.o
-
-src/sim_map11_5.i: src/sim_map11_5.cpp.i
-.PHONY : src/sim_map11_5.i
-
-# target to preprocess a source file
-src/sim_map11_5.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/sim_on_map11_5.dir/build.make CMakeFiles/sim_on_map11_5.dir/src/sim_map11_5.cpp.i
-.PHONY : src/sim_map11_5.cpp.i
-
-src/sim_map11_5.s: src/sim_map11_5.cpp.s
-.PHONY : src/sim_map11_5.s
-
-# target to generate assembly for a file
-src/sim_map11_5.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/sim_on_map11_5.dir/build.make CMakeFiles/sim_on_map11_5.dir/src/sim_map11_5.cpp.s
-.PHONY : src/sim_map11_5.cpp.s
-
-src/sim_map11_6.o: src/sim_map11_6.cpp.o
-.PHONY : src/sim_map11_6.o
-
-# target to build an object file
-src/sim_map11_6.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/sim_on_map11_6.dir/build.make CMakeFiles/sim_on_map11_6.dir/src/sim_map11_6.cpp.o
-.PHONY : src/sim_map11_6.cpp.o
-
-src/sim_map11_6.i: src/sim_map11_6.cpp.i
-.PHONY : src/sim_map11_6.i
-
-# target to preprocess a source file
-src/sim_map11_6.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/sim_on_map11_6.dir/build.make CMakeFiles/sim_on_map11_6.dir/src/sim_map11_6.cpp.i
-.PHONY : src/sim_map11_6.cpp.i
-
-src/sim_map11_6.s: src/sim_map11_6.cpp.s
-.PHONY : src/sim_map11_6.s
-
-# target to generate assembly for a file
-src/sim_map11_6.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/sim_on_map11_6.dir/build.make CMakeFiles/sim_on_map11_6.dir/src/sim_map11_6.cpp.s
-.PHONY : src/sim_map11_6.cpp.s
-
-src/sim_map11_7.o: src/sim_map11_7.cpp.o
-.PHONY : src/sim_map11_7.o
-
-# target to build an object file
-src/sim_map11_7.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/sim_on_map11_7.dir/build.make CMakeFiles/sim_on_map11_7.dir/src/sim_map11_7.cpp.o
-.PHONY : src/sim_map11_7.cpp.o
-
-src/sim_map11_7.i: src/sim_map11_7.cpp.i
-.PHONY : src/sim_map11_7.i
-
-# target to preprocess a source file
-src/sim_map11_7.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/sim_on_map11_7.dir/build.make CMakeFiles/sim_on_map11_7.dir/src/sim_map11_7.cpp.i
-.PHONY : src/sim_map11_7.cpp.i
-
-src/sim_map11_7.s: src/sim_map11_7.cpp.s
-.PHONY : src/sim_map11_7.s
-
-# target to generate assembly for a file
-src/sim_map11_7.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/sim_on_map11_7.dir/build.make CMakeFiles/sim_on_map11_7.dir/src/sim_map11_7.cpp.s
-.PHONY : src/sim_map11_7.cpp.s
-
-src/sim_map11_8.o: src/sim_map11_8.cpp.o
-.PHONY : src/sim_map11_8.o
-
-# target to build an object file
-src/sim_map11_8.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/sim_on_map11_8.dir/build.make CMakeFiles/sim_on_map11_8.dir/src/sim_map11_8.cpp.o
-.PHONY : src/sim_map11_8.cpp.o
-
-src/sim_map11_8.i: src/sim_map11_8.cpp.i
-.PHONY : src/sim_map11_8.i
-
-# target to preprocess a source file
-src/sim_map11_8.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/sim_on_map11_8.dir/build.make CMakeFiles/sim_on_map11_8.dir/src/sim_map11_8.cpp.i
-.PHONY : src/sim_map11_8.cpp.i
-
-src/sim_map11_8.s: src/sim_map11_8.cpp.s
-.PHONY : src/sim_map11_8.s
-
-# target to generate assembly for a file
-src/sim_map11_8.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/sim_on_map11_8.dir/build.make CMakeFiles/sim_on_map11_8.dir/src/sim_map11_8.cpp.s
-.PHONY : src/sim_map11_8.cpp.s
-
 src/sim_map2.o: src/sim_map2.cpp.o
 .PHONY : src/sim_map2.o
 
@@ -1288,30 +942,6 @@ src/sim_map9.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/sim_on_map9.dir/build.make CMakeFiles/sim_on_map9.dir/src/sim_map9.cpp.s
 .PHONY : src/sim_map9.cpp.s
 
-src/test_epsilon_effect.o: src/test_epsilon_effect.cpp.o
-.PHONY : src/test_epsilon_effect.o
-
-# target to build an object file
-src/test_epsilon_effect.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/vary_eps_LCBS.dir/build.make CMakeFiles/vary_eps_LCBS.dir/src/test_epsilon_effect.cpp.o
-.PHONY : src/test_epsilon_effect.cpp.o
-
-src/test_epsilon_effect.i: src/test_epsilon_effect.cpp.i
-.PHONY : src/test_epsilon_effect.i
-
-# target to preprocess a source file
-src/test_epsilon_effect.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/vary_eps_LCBS.dir/build.make CMakeFiles/vary_eps_LCBS.dir/src/test_epsilon_effect.cpp.i
-.PHONY : src/test_epsilon_effect.cpp.i
-
-src/test_epsilon_effect.s: src/test_epsilon_effect.cpp.s
-.PHONY : src/test_epsilon_effect.s
-
-# target to generate assembly for a file
-src/test_epsilon_effect.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/vary_eps_LCBS.dir/build.make CMakeFiles/vary_eps_LCBS.dir/src/test_epsilon_effect.cpp.s
-.PHONY : src/test_epsilon_effect.cpp.s
-
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -1322,15 +952,6 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... bbmocbs_approx"
 	@echo "... sim_on_map1"
-	@echo "... sim_on_map10"
-	@echo "... sim_on_map11_1"
-	@echo "... sim_on_map11_2"
-	@echo "... sim_on_map11_3"
-	@echo "... sim_on_map11_4"
-	@echo "... sim_on_map11_5"
-	@echo "... sim_on_map11_6"
-	@echo "... sim_on_map11_7"
-	@echo "... sim_on_map11_8"
 	@echo "... sim_on_map2"
 	@echo "... sim_on_map3"
 	@echo "... sim_on_map4"
@@ -1339,7 +960,6 @@ help:
 	@echo "... sim_on_map7"
 	@echo "... sim_on_map8"
 	@echo "... sim_on_map9"
-	@echo "... vary_eps_LCBS"
 	@echo "... src/Definitions.o"
 	@echo "... src/Definitions.i"
 	@echo "... src/Definitions.s"
@@ -1403,33 +1023,6 @@ help:
 	@echo "... src/sim_map1.o"
 	@echo "... src/sim_map1.i"
 	@echo "... src/sim_map1.s"
-	@echo "... src/sim_map10.o"
-	@echo "... src/sim_map10.i"
-	@echo "... src/sim_map10.s"
-	@echo "... src/sim_map11_1.o"
-	@echo "... src/sim_map11_1.i"
-	@echo "... src/sim_map11_1.s"
-	@echo "... src/sim_map11_2.o"
-	@echo "... src/sim_map11_2.i"
-	@echo "... src/sim_map11_2.s"
-	@echo "... src/sim_map11_3.o"
-	@echo "... src/sim_map11_3.i"
-	@echo "... src/sim_map11_3.s"
-	@echo "... src/sim_map11_4.o"
-	@echo "... src/sim_map11_4.i"
-	@echo "... src/sim_map11_4.s"
-	@echo "... src/sim_map11_5.o"
-	@echo "... src/sim_map11_5.i"
-	@echo "... src/sim_map11_5.s"
-	@echo "... src/sim_map11_6.o"
-	@echo "... src/sim_map11_6.i"
-	@echo "... src/sim_map11_6.s"
-	@echo "... src/sim_map11_7.o"
-	@echo "... src/sim_map11_7.i"
-	@echo "... src/sim_map11_7.s"
-	@echo "... src/sim_map11_8.o"
-	@echo "... src/sim_map11_8.i"
-	@echo "... src/sim_map11_8.s"
 	@echo "... src/sim_map2.o"
 	@echo "... src/sim_map2.i"
 	@echo "... src/sim_map2.s"
@@ -1454,9 +1047,6 @@ help:
 	@echo "... src/sim_map9.o"
 	@echo "... src/sim_map9.i"
 	@echo "... src/sim_map9.s"
-	@echo "... src/test_epsilon_effect.o"
-	@echo "... src/test_epsilon_effect.i"
-	@echo "... src/test_epsilon_effect.s"
 .PHONY : help
 
 
