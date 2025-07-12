@@ -25,6 +25,14 @@ list(REMOVE_ITEM SOURCES ${CMAKE_SOURCE_DIR}/src/sim_map7.cpp)
 list(REMOVE_ITEM SOURCES ${CMAKE_SOURCE_DIR}/src/sim_map8.cpp)
 list(REMOVE_ITEM SOURCES ${CMAKE_SOURCE_DIR}/src/sim_map9.cpp)
 list(REMOVE_ITEM SOURCES ${CMAKE_SOURCE_DIR}/src/sim_map10.cpp)
+list(REMOVE_ITEM SOURCES ${CMAKE_SOURCE_DIR}/src/sim_map11_1.cpp)
+list(REMOVE_ITEM SOURCES ${CMAKE_SOURCE_DIR}/src/sim_map11_2.cpp)
+list(REMOVE_ITEM SOURCES ${CMAKE_SOURCE_DIR}/src/sim_map11_3.cpp)
+list(REMOVE_ITEM SOURCES ${CMAKE_SOURCE_DIR}/src/sim_map11_4.cpp)
+list(REMOVE_ITEM SOURCES ${CMAKE_SOURCE_DIR}/src/sim_map11_5.cpp)
+list(REMOVE_ITEM SOURCES ${CMAKE_SOURCE_DIR}/src/sim_map11_6.cpp)
+list(REMOVE_ITEM SOURCES ${CMAKE_SOURCE_DIR}/src/sim_map11_7.cpp)
+list(REMOVE_ITEM SOURCES ${CMAKE_SOURCE_DIR}/src/sim_map11_8.cpp)
 
 # Find Boost
 find_package(Boost REQUIRED COMPONENTS program_options log thread filesystem system)
@@ -79,3 +87,28 @@ target_link_libraries(sim_on_map9 ${Boost_LIBRARIES})
 # Simulation automation binary
 add_executable(sim_on_map10 src/sim_map10.cpp)
 target_link_libraries(sim_on_map10 ${Boost_LIBRARIES})
+
+# Simulation automation binary
+add_executable(sim_on_map11_1 src/sim_map11_1.cpp)
+target_link_libraries(sim_on_map11_1 ${Boost_LIBRARIES})
+# Simulation automation binary
+add_executable(sim_on_map11_2 src/sim_map11_2.cpp)
+target_link_libraries(sim_on_map11_2 ${Boost_LIBRARIES})
+# Simulation automation binary
+add_executable(sim_on_map11_3 src/sim_map11_3.cpp)
+target_link_libraries(sim_on_map11_3 ${Boost_LIBRARIES})
+# Simulation automation binary
+add_executable(sim_on_map11_4 src/sim_map11_4.cpp)
+target_link_libraries(sim_on_map11_4 ${Boost_LIBRARIES})
+# Simulation automation binary
+add_executable(sim_on_map11_5 src/sim_map11_5.cpp)
+target_link_libraries(sim_on_map11_5 ${Boost_LIBRARIES})
+# Simulation automation binary
+add_executable(sim_on_map11_6 src/sim_map11_6.cpp)
+target_link_libraries(sim_on_map11_6 ${Boost_LIBRARIES})
+# Simulation automation binary
+add_executable(sim_on_map11_7 src/sim_map11_7.cpp)
+target_link_libraries(sim_on_map11_7 ${Boost_LIBRARIES})
+# Simulation automation binary
+add_executable(sim_on_map11_8 src/sim_map11_8.cpp)
+target_link_libraries(sim_on_map11_8 ${Boost_LIBRARIES})

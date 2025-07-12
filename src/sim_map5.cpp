@@ -6,20 +6,20 @@
 #include <cstdlib>
 
 std::string time_lim = "120"; // seconds
-std::string map_name = "custom-32-32-2";
+std::string map_name = "random-32-32-20";
 
-std::string map_file = "../maps/"+map_name+"/"+map_name+".map";
-std::string cost1 = "../maps/"+map_name+"/random-1.cost";
-std::string cost2 = "../maps/"+map_name+"/random-2.cost";
-std::string cost3 = "../maps/"+map_name+"/random-3.cost";
-std::string cost4 = "../maps/"+map_name+"/random-4.cost";
-std::string cost5 = "../maps/"+map_name+"/random-5.cost";
-std::string cost6 = "../maps/"+map_name+"/random-6.cost";
-std::string cost7 = "../maps/"+map_name+"/random-7.cost";
-std::string cost8 = "../maps/"+map_name+"/random-8.cost";
-std::string cost9 = "../maps/"+map_name+"/random-9.cost";
-std::string cost10 = "../maps/"+map_name+"/random-10.cost";
-std::string scen_dir = "../maps/"+map_name+"/scen-random";
+std::string map_file = "../maps_rand_scen/"+map_name+"/"+map_name+".map";
+std::string cost1 = "../maps_rand_scen/"+map_name+"/random-1.cost";
+std::string cost2 = "../maps_rand_scen/"+map_name+"/random-2.cost";
+std::string cost3 = "../maps_rand_scen/"+map_name+"/random-3.cost";
+std::string cost4 = "../maps_rand_scen/"+map_name+"/random-4.cost";
+std::string cost5 = "../maps_rand_scen/"+map_name+"/random-5.cost";
+std::string cost6 = "../maps_rand_scen/"+map_name+"/random-6.cost";
+std::string cost7 = "../maps_rand_scen/"+map_name+"/random-7.cost";
+std::string cost8 = "../maps_rand_scen/"+map_name+"/random-8.cost";
+std::string cost9 = "../maps_rand_scen/"+map_name+"/random-9.cost";
+std::string cost10 = "../maps_rand_scen/"+map_name+"/random-10.cost";
+std::string scen_dir = "../maps_rand_scen/"+map_name+"/scen-random";
 std::string output_file = "../data/"+map_name+"_output_log_"+time_lim+"sec.txt";
 std::string binary = "./bin/bbmocbs_approx";
 
@@ -28,7 +28,7 @@ std::string make_command(const std::string& scen_file, int agent_num, const std:
     cmd << binary
         << " -m " << map_file
         << " -s " << scen_dir << "/" << scen_file
-        << " -d 4"
+        << " -d 3"
         << " -e 0.03"
         << " --c1 " << cost1
         << " --c2 " << cost2
@@ -148,11 +148,11 @@ void write_run_outcomes(const std::string& output_file, const std::string& algo_
 
 
 int main() {
-    std::vector<std::string> algorithms = {"LCBS -k 1", "BBMOCBS-k -k 1"};//, "BBMOCBS-k -k 5", "BBMOCBS-k -k 10", "BBMOCBS-eps", "BBMOCBS-pex"};//{"LCBS -k 1 -d 5", "LCBS -k 1 -d 6", "LCBS -k 1 -d 7", "LCBS -k 1 -d 8", "LCBS -k 1 -d 9", "LCBS -k 1 -d 10"};
+    std::vector<std::string> algorithms = {"LCBS -k 1", "BBMOCBS-k -k 1", "BBMOCBS-k -k 5", "BBMOCBS-k -k 10", "BBMOCBS-eps", "BBMOCBS-pex"};//{"LCBS -k 1 -d 5", "LCBS -k 1 -d 6", "LCBS -k 1 -d 7", "LCBS -k 1 -d 8", "LCBS -k 1 -d 9", "LCBS -k 1 -d 10"};
     std::vector<int> agent_counts = {5, 10, 15, 20, 25, 30, 35};
     int total_runs = 10;
 
-    std::ofstream summary("../data/results_"+map_name+"_"+time_lim+"sec_4D.txt", std::ios::app);
+    std::ofstream summary("../data/rand_scen_results/results_rand_scen_"+map_name+"_"+time_lim+"sec.txt", std::ios::app);
     summary.seekp(0, std::ios::end);
     summary << "Algorithm,Agents,SuccessCount,Total,SuccessRate\n\n";
 

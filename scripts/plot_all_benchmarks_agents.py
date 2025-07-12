@@ -29,7 +29,6 @@ map_names = ["empty-32-32",
              "random-64-64-10",
              "random-64-64-20",
              "room-32-32-4",
-             "room-64-64-16",
              "room-64-64-8"]
 
 # map_names = ["custom-32-32-2"]
@@ -63,9 +62,9 @@ linestyles = {
 
 for map_name in map_names:
     # Plot configuration
-    plt.figure(figsize=(6, 3))
+    plt.figure(figsize=(4, 3))
     # Read from the file directly
-    data = pd.read_csv("../data/results_"+map_name+"_120sec_4D.txt")
+    data = pd.read_csv("../data/rand_scen_results/results_rand_scen_"+map_name+"_120sec.txt")
 
     # Plot lines for each algorithm
     for algo in data['Algorithm'].unique():
@@ -91,12 +90,12 @@ for map_name in map_names:
     plt.yticks(fontsize=16)
     plt.ylim(-0.05, 1.05)
     plt.grid(True)
-    plt.legend(title="success rate:", loc="center left", bbox_to_anchor=(1, 0.5))
+    # plt.legend(title="success rate:", loc="center left", bbox_to_anchor=(1, 0.5))
     # plt.title("Success Rate of Algorithms")
     plt.tight_layout()
 
     # Save plot
-    plt.savefig("../figures/benchmarks/"+map_name+"_4D.png", dpi=150)
+    plt.savefig("../figures/benchmarks/"+map_name+"_rand.png", dpi=150)
     # plt.show()
 
 # save legend separately as a box with 1 row and 5 columns as a png file
