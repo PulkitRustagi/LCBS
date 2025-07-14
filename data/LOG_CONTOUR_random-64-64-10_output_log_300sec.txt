@@ -1,44 +1,108 @@
-SUCCESS
-apex cost: 
-{1015, 2316}, 
-real cost: 
-{1016, 2319}, 
+FAIL
+apex cost:
+
+real cost:
+
+
 
 
 Algorithm = LCBS
-Agents = 25
+Agents = 10
 SuccessFlag = True
 ------
-SUCCESS
-apex cost: 
-{934, 2128}, 
-real cost: 
-{934, 2128}, 
+FAIL
+apex cost:
+
+real cost:
+
+
 
 
 Algorithm = LCBS
-Agents = 25
+Agents = 10
 SuccessFlag = True
 ------
-SUCCESS
-apex cost: 
-{1018, 2332}, 
-real cost: 
-{1021, 2351}, 
+FAIL
+apex cost:
+
+real cost:
+
+
 
 
 Algorithm = LCBS
-Agents = 25
+Agents = 10
 SuccessFlag = True
 ------
-SUCCESS
-apex cost: 
-{1022, 2321}, 
-real cost: 
-{1022, 2321}, 
+FAIL
+apex cost:
+
+real cost:
+
+
 
 
 Algorithm = LCBS
-Agents = 25
+Agents = 10
+SuccessFlag = True
+------
+FAIL
+apex cost:
+
+real cost:
+
+
+
+
+Algorithm = LCBS
+Agents = 10
+SuccessFlag = True
+------
+FAIL
+apex cost:
+
+real cost:
+
+
+
+
+Algorithm = LCBS
+Agents = 10
+SuccessFlag = True
+------
+FAIL
+apex cost:
+
+real cost:
+
+
+
+
+Algorithm = LCBS
+Agents = 10
+SuccessFlag = True
+------
+FAIL
+apex cost:
+
+real cost:
+
+
+
+
+Algorithm = LCBS
+Agents = 10
+SuccessFlag = True
+------
+FAIL
+apex cost:
+
+real cost:
+
+
+
+
+Algorithm = LCBS
+Agents = 10
 SuccessFlag = True
 ------

@@ -5,13 +5,13 @@ from matplotlib import cm
 from mpl_toolkits.mplot3d import Axes3D  # needed even if not used directly
 
 # Input data folder and output figures folder
-data_folder = "../data/dimensional_trends/custom-32-32"
-figure_folder = "../figures/contours/custom-32-32"
+data_folder = "../data/dimensional_trends/random-32-32-20"
+figure_folder = "../figures/contours/random-32-32-20"
 os.makedirs(figure_folder, exist_ok=True)
 
 # Mapping of method display names to file names
 method_files = {
-    "LCBS": "LCBS.txt",
+    "LCBS": "LCBS_new.txt",
     "BBMOCBS-k_1": "BBMOCBS-k_k_1.txt",
     "BBMOCBS-k_5": "BBMOCBS-k_k_5.txt",
     "BBMOCBS-k_10": "BBMOCBS-k_k_10.txt",
@@ -66,7 +66,7 @@ for method_name, filename in method_files.items():
     # Plotting
     fig = plt.figure(figsize=(8, 6))
     ax = fig.add_subplot(111, projection='3d')
-    surf = ax.plot_surface(X, Y, Z, cmap=cm.viridis, edgecolor='k', linewidth=0.3, antialiased=True)
+    surf = ax.plot_surface(X, Y, Z, cmap=cm.viridis, edgecolor='k', linewidth=0.3, antialiased=True, vmin=0.0, vmax=1.0)
 
     # ax.set_title(f"{method_name}", fontsize=20, fontweight='bold', pad=10)
     ax.text(
