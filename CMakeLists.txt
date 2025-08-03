@@ -13,16 +13,8 @@ include_directories("inc")
 
 file(GLOB SOURCES "src/*.cpp" "src/HighLevel/*.cpp" "src/LowLevel/*.cpp" "src/LowLevel/Utils/*.cpp")
 
-# Remove simulate_algo.cpp to avoid duplicate main() error
-list(REMOVE_ITEM SOURCES ${CMAKE_SOURCE_DIR}/src/sim_map1.cpp)
-list(REMOVE_ITEM SOURCES ${CMAKE_SOURCE_DIR}/src/sim_map2.cpp)
-list(REMOVE_ITEM SOURCES ${CMAKE_SOURCE_DIR}/src/sim_map3.cpp)
-list(REMOVE_ITEM SOURCES ${CMAKE_SOURCE_DIR}/src/sim_map4.cpp)
-list(REMOVE_ITEM SOURCES ${CMAKE_SOURCE_DIR}/src/sim_map5.cpp)
-list(REMOVE_ITEM SOURCES ${CMAKE_SOURCE_DIR}/src/sim_map6.cpp)
-list(REMOVE_ITEM SOURCES ${CMAKE_SOURCE_DIR}/src/sim_map7.cpp)
-list(REMOVE_ITEM SOURCES ${CMAKE_SOURCE_DIR}/src/sim_map8.cpp)
-list(REMOVE_ITEM SOURCES ${CMAKE_SOURCE_DIR}/src/sim_map9.cpp)
+list(REMOVE_ITEM SOURCES ${CMAKE_SOURCE_DIR}/src/run_sim_success_contours.cpp)
+list(REMOVE_ITEM SOURCES ${CMAKE_SOURCE_DIR}/src/run_sim_success_rates.cpp)
 
 # Find Boost
 find_package(Boost REQUIRED COMPONENTS program_options log thread filesystem system)
@@ -31,41 +23,13 @@ include_directories(${Boost_INCLUDE_DIRS})
 message(${CMAKE_BINARY_DIR})
 
 # Main solver binary
-add_executable(bbmocbs_approx src/main.cpp ${SOURCES})
-target_link_libraries(bbmocbs_approx ${Boost_LIBRARIES})
+add_executable(lcbs_sim src/main.cpp ${SOURCES})
+target_link_libraries(lcbs_sim ${Boost_LIBRARIES})
 
 # Simulation automation binary
-add_executable(sim_on_map1 src/sim_map1.cpp)
-target_link_libraries(sim_on_map1 ${Boost_LIBRARIES})
+add_executable(sim_success_rates src/run_sim_success_rates.cpp)
+target_link_libraries(sim_success_rates ${Boost_LIBRARIES})
 
 # Simulation automation binary
-add_executable(sim_on_map2 src/sim_map2.cpp)
-target_link_libraries(sim_on_map2 ${Boost_LIBRARIES})
-
-# Simulation automation binary
-add_executable(sim_on_map3 src/sim_map3.cpp)
-target_link_libraries(sim_on_map3 ${Boost_LIBRARIES})
-
-# Simulation automation binary
-add_executable(sim_on_map4 src/sim_map4.cpp)
-target_link_libraries(sim_on_map4 ${Boost_LIBRARIES})
-
-# Simulation automation binary
-add_executable(sim_on_map5 src/sim_map5.cpp)
-target_link_libraries(sim_on_map5 ${Boost_LIBRARIES})
-
-# Simulation automation binary
-add_executable(sim_on_map6 src/sim_map6.cpp)
-target_link_libraries(sim_on_map6 ${Boost_LIBRARIES})
-
-# Simulation automation binary
-add_executable(sim_on_map7 src/sim_map7.cpp)
-target_link_libraries(sim_on_map7 ${Boost_LIBRARIES})
-
-# Simulation automation binary
-add_executable(sim_on_map8 src/sim_map8.cpp)
-target_link_libraries(sim_on_map8 ${Boost_LIBRARIES})
-
-# Simulation automation binary
-add_executable(sim_on_map9 src/sim_map9.cpp)
-target_link_libraries(sim_on_map9 ${Boost_LIBRARIES})
+add_executable(sim_success_contours src/run_sim_success_contours.cpp)
+target_link_libraries(sim_success_contours ${Boost_LIBRARIES})

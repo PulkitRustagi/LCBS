@@ -4,15 +4,15 @@ import matplotlib.pyplot as plt
 from matplotlib import cm
 from mpl_toolkits.mplot3d import Axes3D  # needed even if not used directly
 
-map_names = ["empty-32-32",
-"empty-48-48",
-"maze-32-32-2",
-"maze-32-32-4",
-"random-32-32-20",
-"random-64-64-10",
-"random-64-64-20",
-"room-32-32-4",
-"room-64-64-8"]
+map_names =["empty-32-32",
+            "empty-48-48",
+            "maze-32-32-2",
+            "maze-32-32-4",
+            "random-32-32-20",
+            "random-64-64-10",
+            "random-64-64-20",
+            "room-32-32-4",
+            "room-64-64-8"]
 
 for map_name in map_names:
     # Input data folder and output figures folder
