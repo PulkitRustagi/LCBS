@@ -7,7 +7,7 @@ real cost:
 
 
 Algorithm = LCBS
-Agents = 25
+Agents = 15
 SuccessFlag = True
 ------
 FAIL
@@ -19,7 +19,7 @@ real cost:
 
 
 Algorithm = LCBS
-Agents = 25
+Agents = 15
 SuccessFlag = True
 ------
 FAIL
@@ -31,6 +31,18 @@ real cost:
 
 
 Algorithm = LCBS
-Agents = 25
+Agents = 15
+SuccessFlag = True
+------
+FAIL
+apex cost:
+
+real cost:
+
+
+
+
+Algorithm = LCBS
+Agents = 15
 SuccessFlag = True
 ------
