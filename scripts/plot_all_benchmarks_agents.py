@@ -1,3 +1,7 @@
+'''
+This script plots the success rate plots from Figures 3, 4, 7 and 8 in the paper.
+'''
+
 import pandas as pd
 import matplotlib.pyplot as plt
 

@@ -1,3 +1,6 @@
+'''
+This script generates random scenario files for all benchmark maps.
+'''
 import random
 import os
 
@@ -42,7 +45,7 @@ map_names = ["empty-32-32",
              "room-32-32-4",
              "room-64-64-16",
              "room-64-64-8"]
-map_names = ["maze-32-32-4"]
+
 for map_name in map_names:
     map_path = f"../maps_rand_scen/{map_name}/{map_name}.map"
     output_dir = f"../maps_rand_scen/{map_name}/scen-random"

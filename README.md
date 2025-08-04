@@ -15,6 +15,7 @@ To run simulation for success rate for all approaches on all benchmarks (scalabi
 ```
 ./bin/sim_success_rates
 ```
+
 To run simulation for success contours from all approaches on all benchmarks (scalability in #objectives):
 ```
 ./bin/sim_success_contours

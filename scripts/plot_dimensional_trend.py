@@ -1,3 +1,7 @@
+'''
+This script generates 3D contour plots for the success rates of various algorithms across different numbers of objectives and agents.
+'''
+
 import os
 import numpy as np
 import matplotlib.pyplot as plt
