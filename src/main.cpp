@@ -151,7 +151,7 @@ if(vm["algorithm"].as<std::string>() == "BBMOCBS-eps"){
     h_solver = std::make_unique<lcbsSolver>(map.graph_size, vm["agent_num"].as<int>(), Algorithm::LCBS, if_eager, dim, turn_dim, vm["turn_cost"].as<int>(), vm["time_limit"].as<int>());
     ((lcbsSolver*)h_solver.get())->set_eps(eps1, eps2, eps3, eps4, eps5, eps6, eps7, eps8, eps9, eps10);
     ((lcbsSolver*)h_solver.get())->set_merging_strategy(ms);
-    ((lcbsSolver*)h_solver.get())->set_solution_num(vm["solution_num"].as<int>());
+    ((lcbsSolver*)h_solver.get())->set_solution_num(1);
 }else{
     output << std::endl << std::endl << vm["algorithm"].as<std::string>() + " is not an allowed algorithm";
     exit(1);

@@ -99,7 +99,7 @@ void write_run_outcomes(const std::string& map_name, const std::string& output_f
 }
 
 int main() {
-    std::vector<std::string> algorithms = {"LCBS -k 1", "BBMOCBS-k -k 1", "BBMOCBS-k -k 5", "BBMOCBS-k -k 10", "BBMOCBS-pex", "BBMOCBS-eps"};
+    std::vector<std::string> algorithms = {"LCBS", "BBMOCBS-k -k 1", "BBMOCBS-k -k 5", "BBMOCBS-k -k 10", "BBMOCBS-pex", "BBMOCBS-eps"};
     std::vector<std::string> dimensions = {"-d 2", "-d 3", "-d 4", "-d 5", "-d 6", "-d 7", "-d 8", "-d 9", "-d 10"}; // dimensions 2 to 10
     std::vector<int> agent_counts = {5, 10, 15, 20, 25, 30, 35};
     int total_runs = 10;

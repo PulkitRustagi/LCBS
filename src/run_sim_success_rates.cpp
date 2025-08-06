@@ -18,7 +18,7 @@ std::vector<std::string> map_names = {"empty-32-32",
                                       "maze-32-32-4", 
                                       "empty-48-48"};
 
-std::vector<std::string> algorithms = {"LCBS -k 1", "BBMOCBS-k -k 1", "BBMOCBS-k -k 5", "BBMOCBS-k -k 10", "BBMOCBS-pex", "BBMOCBS-eps"};
+std::vector<std::string> algorithms = {"LCBS", "BBMOCBS-k -k 1", "BBMOCBS-k -k 5", "BBMOCBS-k -k 10", "BBMOCBS-pex", "BBMOCBS-eps"};
 std::vector<int> agent_counts = {5, 10, 15, 20, 25, 30, 35};
 int total_runs = 25;
 
