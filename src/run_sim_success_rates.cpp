@@ -8,15 +8,17 @@
 
 std::string time_lim = "120"; // seconds ==> 2 minutes
 std::string binary = "./bin/lcbs_sim";
-std::vector<std::string> map_names = {"empty-32-32", 
-                                      "maze-32-32-2", 
-                                      "room-32-32-4",
-                                      "random-32-32-20", 
-                                      "room-64-64-8", 
-                                      "random-64-64-10",
-                                      "random-64-64-20", 
-                                      "maze-32-32-4", 
-                                      "empty-48-48"};
+std::vector<std::string> map_names = {"warehouse-10-20-10-2-1",
+                                    //   "empty-32-32", 
+                                    //   "maze-32-32-2", 
+                                    //   "room-32-32-4",
+                                    //   "random-32-32-20", 
+                                    //   "room-64-64-8", 
+                                    //   "random-64-64-10",
+                                    //   "random-64-64-20", 
+                                    //   "maze-32-32-4", 
+                                    //   "empty-48-48"
+                                      };
 
 std::vector<std::string> algorithms = {"LCBS", "BBMOCBS-k -k 1", "BBMOCBS-k -k 5", "BBMOCBS-k -k 10", "BBMOCBS-pex", "BBMOCBS-eps"};
 std::vector<int> agent_counts = {5, 10, 15, 20, 25, 30, 35};
@@ -31,7 +33,7 @@ std::string make_command(const std::string& map_name, const std::string& scen_fi
         << " -m " << map_file
         << " -s " << scen_dir + "/" + scen_file
         << " -e 0.03"
-        << " -d 2" // CHANGE this for number of objectives - currently set to 2, can go up to 10
+        << " -d 3" // CHANGE this for number of objectives - currently set to 2, can go up to 10
         << " --c1 ../maps/" << map_name << "/random-1.cost"
         << " --c2 ../maps/" << map_name << "/random-2.cost"
         << " --c3 ../maps/" << map_name << "/random-3.cost"

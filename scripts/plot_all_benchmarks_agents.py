@@ -23,15 +23,17 @@ def clean_algo_name(algo_name):
     else:
         return algo_name
 
-map_names = ["empty-32-32", 
-             "empty-48-48",
-             "maze-32-32-2",
-             "maze-32-32-4",
-             "random-32-32-20",
-             "random-64-64-10",
-             "random-64-64-20",
-             "room-32-32-4",
-             "room-64-64-8"]
+map_names = ["warehouse-10-20-10-2-1",
+            #  "empty-32-32", 
+            #  "empty-48-48",
+            #  "maze-32-32-2",
+            #  "maze-32-32-4",
+            #  "random-32-32-20",
+            #  "random-64-64-10",
+            #  "random-64-64-20",
+            #  "room-32-32-4",
+            #  "room-64-64-8"
+             ]
 
 markers = {
     "BBMOCBS-k (k=1)": 'D',
@@ -62,7 +64,7 @@ for map_name in map_names:
     # Plot configuration
     plt.figure(figsize=(4, 3))
     # Read from the file directly
-    data = pd.read_csv("../data/rand_scen_results/results_rand_scen_"+map_name+"_120sec.txt")
+    data = pd.read_csv("../data/success_rate_results/"+map_name+"_4D_rand_120sec.txt")
 
     # Plot lines for each algorithm
     for algo in data['Algorithm'].unique():
@@ -93,7 +95,7 @@ for map_name in map_names:
     plt.tight_layout()
 
     # Save plot
-    plt.savefig("../figures/benchmarks/"+map_name+"_rand.png", dpi=150)
+    plt.savefig("../figures/benchmarks/"+map_name+"_4D_rand.png", dpi=150)
     # plt.show()
 
 # save legend separately as a box with 1 row and 5 columns as a png file
