@@ -1,0 +1,6 @@
+FAIL
+
+Algorithm = BBMOCBS-pex
+Agents = 5
+SuccessFlag = False
+------

@@ -1,0 +1,11 @@
+SUCCESS
+apex cost: 
+{222, 580}, 
+real cost: 
+{222, 587}, 
+
+
+Algorithm = LCBS
+Agents = 5
+SuccessFlag = True
+------

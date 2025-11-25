@@ -1,0 +1,13 @@
+SUCCESS
+apex cost: 
+{206, 481}, {208, 475}, {210, 470}, {212, 467}, {214, 466}, 
+real cost: 
+{206, 481}, {208, 475}, {210, 470}, {212, 467}, {214, 466}, 
+
+epsilon = 4.85437e-06
+
+
+Algorithm = BBMOCBS-k
+Agents = 5
+SuccessFlag = True
+------

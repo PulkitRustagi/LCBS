@@ -15,6 +15,10 @@ file(GLOB SOURCES "src/*.cpp" "src/HighLevel/*.cpp" "src/LowLevel/*.cpp" "src/Lo
 
 list(REMOVE_ITEM SOURCES ${CMAKE_SOURCE_DIR}/src/run_sim_success_contours.cpp)
 list(REMOVE_ITEM SOURCES ${CMAKE_SOURCE_DIR}/src/run_sim_success_rates.cpp)
+list(REMOVE_ITEM SOURCES ${CMAKE_SOURCE_DIR}/src/run_optimality_experiments.cpp)
+list(REMOVE_ITEM SOURCES ${CMAKE_SOURCE_DIR}/src/run_optimality_experiments1.cpp)
+list(REMOVE_ITEM SOURCES ${CMAKE_SOURCE_DIR}/src/run_optimality_experiments2.cpp)
+list(REMOVE_ITEM SOURCES ${CMAKE_SOURCE_DIR}/src/aggregate_lexopt_percentages.cpp)
 
 # Find Boost
 find_package(Boost REQUIRED COMPONENTS program_options log thread filesystem system)
@@ -33,3 +37,19 @@ target_link_libraries(sim_success_rates ${Boost_LIBRARIES})
 # Simulation automation binary
 add_executable(sim_success_contours src/run_sim_success_contours.cpp)
 target_link_libraries(sim_success_contours ${Boost_LIBRARIES})
+
+# Simulation automation binary
+add_executable(sim_opt_time_check src/run_optimality_experiments.cpp)
+target_link_libraries(sim_opt_time_check ${Boost_LIBRARIES})
+
+# Simulation automation binary
+add_executable(sim_opt_time_check1 src/run_optimality_experiments1.cpp)
+target_link_libraries(sim_opt_time_check1 ${Boost_LIBRARIES})
+
+# Simulation automation binary
+add_executable(sim_opt_time_check2 src/run_optimality_experiments2.cpp)
+target_link_libraries(sim_opt_time_check2 ${Boost_LIBRARIES})
+
+# Simulation automation binary
+add_executable(sim_opt_aggregation src/aggregate_lexopt_percentages.cpp)
+target_link_libraries(sim_opt_aggregation ${Boost_LIBRARIES})

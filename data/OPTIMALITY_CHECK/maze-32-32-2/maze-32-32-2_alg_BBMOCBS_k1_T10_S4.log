@@ -1,0 +1,13 @@
+FAIL
+apex cost: 
+{361, 979}, 
+real cost: 
+{361, 999}, 
+
+epsilon = 0.02043
+
+
+Algorithm = BBMOCBS-k
+Agents = 5
+SuccessFlag = False
+------

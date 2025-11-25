@@ -10,9 +10,6 @@
 #include <string>
 #include <vector>
 
-#include <filesystem>
-
-// namespace fs = std::filesystem;
 
 // ---------------------------------------------------------------------
 // Configuration
@@ -22,16 +19,8 @@ static const std::string BINARY = "./bin/lcbs_sim";
 
 // 10 benchmark maps (same as in your existing scripts)
 static const std::vector<std::string> MAP_NAMES = {
-    "room-32-32-4",
-    "empty-32-32",
     "maze-32-32-2",
-    "warehouse-10-20-10-2-1",
-    "random-32-32-20",
-    "room-64-64-8",
-    "random-64-64-10",
-    "random-64-64-20",
-    "maze-32-32-4",
-    "empty-48-48"
+    "warehouse-10-20-10-2-1"
 };
 
 struct AlgorithmConfig {
@@ -49,10 +38,10 @@ static const std::vector<AlgorithmConfig> ALGORITHMS = {
     {"BBMOCBS_eps",   "BBMOCBS-eps"}
 };
 
-static const std::vector<int> TIME_LIMITS = {120, 60, 30, 10};
+static const std::vector<int> TIME_LIMITS = {120, 60, 30, 10, 5, 1};
 static const int TOTAL_RUNS = 25;   // 25 scenarios per map
 static const int NUM_AGENTS = 5;
-static const int NUM_OBJECTIVES = 2;  // d = 2
+static const int NUM_OBJECTIVES = 3;  // d = 2
 
 // ---------------------------------------------------------------------
 // Utilities: lexicographic comparison and cost parsing
