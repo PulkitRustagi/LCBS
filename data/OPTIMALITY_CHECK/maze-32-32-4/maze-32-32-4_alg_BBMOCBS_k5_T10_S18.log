@@ -1,10 +1,10 @@
 FAIL
 apex cost: 
-{251, 642}, {252, 642}, {255, 639}, 
-real cost: 
-{251, 646}, {253, 645}, {255, 641}, 
 
-epsilon = 0.00623209
+real cost: 
+
+
+epsilon = 0
 
 
 Algorithm = BBMOCBS-k

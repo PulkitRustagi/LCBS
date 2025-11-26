@@ -1,0 +1,26 @@
+SUCCESS
+apex cost: 
+{237, 637}, {239, 632}, {242, 628}, {246, 625}, {249, 623}, 
+real cost: 
+{237, 641}, {239, 636}, {243, 632}, {247, 628}, {249, 626}, 
+
+epsilon = 0.00637102
+
+
+Algorithm = BBMOCBS-k
+Agents = 5
+SuccessFlag = True
+------
+SUCCESS
+apex cost: 
+{237, 637}, {239, 632}, {242, 628}, {246, 625}, {249, 623}, 
+real cost: 
+{237, 641}, {239, 636}, {243, 632}, {247, 628}, {249, 626}, 
+
+epsilon = 0.00637102
+
+
+Algorithm = BBMOCBS-k
+Agents = 5
+SuccessFlag = True
+------

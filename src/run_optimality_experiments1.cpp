@@ -222,6 +222,7 @@ int main() {
                                      alg,
                                      T,
                                      log_path);
+                    std::cout << "\n\n[r_o_e1.cpp l225]Command: " << command << "\n\n";
 
                     std::cout << "    [T=" << T << "s] Map=" << map_name
                               << " scen=" << scen_idx

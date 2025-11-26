@@ -46,6 +46,11 @@ struct Stat {
     int matches = 0;  // rows with match == 1
 };
 
+struct LcbsScenario {
+    bool seen   = false;  // we saw this (map, T, scenario) at all
+    bool solved = false;  // LCBS had a cost vector
+};
+
 static inline std::string trim(const std::string& s) {
     std::size_t b = s.find_first_not_of(" \t\r\n");
     if (b == std::string::npos) return "";
@@ -58,12 +63,18 @@ static inline std::string trim(const std::string& s) {
 // -----------------------------------------------------------
 
 int main() {
-    // stats[algorithm][map][time_limit] -> Stat
-    using TimeMap = std::map<int, Stat>;
-    using MapMap  = std::map<std::string, TimeMap>;
+    // stats[algorithm][map][time_limit] -> Stat  (for non-LCBS methods)
+    using TimeMap   = std::map<int, Stat>;
+    using MapMap    = std::map<std::string, TimeMap>;
     std::map<std::string, MapMap> stats;
 
-    const std::string base_dir = "../data/OPTIMALITY_CHECK";
+    // lcbs_stats[map][time_limit][scenario] -> LcbsScenario
+    using ScenarioMap = std::map<int, LcbsScenario>;
+    using LcbsTimeMap = std::map<int, ScenarioMap>;
+    using LcbsMapMap  = std::map<std::string, LcbsTimeMap>;
+    LcbsMapMap lcbs_stats;
+
+    const std::string base_dir = "../data/OPTIMALITY_CHECK_2D";
 
     // -------------------------------------------------------
     // 1) Parse all opt_summary_T*.csv files and accumulate
@@ -113,8 +124,31 @@ int main() {
                     continue;
                 }
 
-                const std::string& alg_id = tokens[3];
+                const std::string& map_in  = tokens[0];
+                int scenario_id            = 0;
+                int time_from_file         = 0;
+                const std::string& alg_id  = tokens[3];
 
+                try {
+                    scenario_id    = std::stoi(tokens[1]);
+                    time_from_file = std::stoi(tokens[2]);
+                } catch (...) {
+                    std::cerr << "Warning: bad scenario/time in " << summary_path
+                              << " -> " << line << "\n";
+                    continue;
+                }
+
+                // LCBS success: lcbs_c1 non-empty -> LCBS has a cost vector
+                bool lcbs_has_cost = !tokens[5].empty();
+
+                // Update LCBS per-scenario data
+                {
+                    LcbsScenario& entry = lcbs_stats[map_in][time_from_file][scenario_id];
+                    entry.seen = true;
+                    if (lcbs_has_cost) entry.solved = true;
+                }
+
+                // For other algorithms, use match column
                 int match_val = 0;
                 try {
                     match_val = std::stoi(tokens[9]);
@@ -122,7 +156,13 @@ int main() {
                     match_val = 0;
                 }
 
-                Stat& st = stats[alg_id][map_name][T];
+                // The summary does not contain LCBS rows (only baselines).
+                // We still skip any accidental LCBS rows, just in case.
+                if (alg_id == "LCBS") {
+                    continue;
+                }
+
+                Stat& st = stats[alg_id][map_in][time_from_file];
                 st.total += 1;
                 if (match_val != 0) {
                     st.matches += 1;
@@ -132,7 +172,7 @@ int main() {
     }
 
     // -------------------------------------------------------
-    // 2) Write one CSV per algorithm with percentages
+    // 2) Write one CSV per algorithm with "optimality percentage"
     // -------------------------------------------------------
     for (const auto& alg_id : ALGORITHM_IDS) {
         std::string out_path = base_dir + "/" + alg_id + ".csv";
@@ -142,17 +182,35 @@ int main() {
             continue;
         }
 
-        out << "map,time_limit_sec,percentage_match\n";
+        out << "map,time_limit_sec,optimality_percentage\n";
 
         for (const auto& map_name : MAP_NAMES) {
             for (int T : TIME_LIMITS) {
                 double percentage = 0.0;
 
                 if (alg_id == "LCBS") {
-                    // By design choice: LCBS is lexicographically optimal
-                    // whenever it returns a solution; reported as 100%.
-                    percentage = 100.0;
+                    // For LCBS: fraction of scenarios (out of those seen) where LCBS solved.
+                    auto map_it = lcbs_stats.find(map_name);
+                    if (map_it != lcbs_stats.end()) {
+                        auto time_it = map_it->second.find(T);
+                        if (time_it != map_it->second.end()) {
+                            int total_scenarios  = 0;
+                            int solved_scenarios = 0;
+                            for (const auto& kv : time_it->second) {
+                                const LcbsScenario& s = kv.second;
+                                if (!s.seen) continue;
+                                total_scenarios += 1;
+                                if (s.solved) solved_scenarios += 1;
+                            }
+                            if (total_scenarios > 0) {
+                                percentage = 100.0 *
+                                             static_cast<double>(solved_scenarios) /
+                                             static_cast<double>(total_scenarios);
+                            }
+                        }
+                    }
                 } else {
+                    // For other methods: fraction of scenarios where match == 1
                     auto alg_it = stats.find(alg_id);
                     if (alg_it != stats.end()) {
                         auto map_it = alg_it->second.find(map_name);

@@ -4,9 +4,3 @@ Algorithm = BBMOCBS-pex
 Agents = 5
 SuccessFlag = True
 ------
-SUCCESS
-
-Algorithm = BBMOCBS-pex
-Agents = 5
-SuccessFlag = True
-------

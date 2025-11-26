@@ -1,0 +1,12 @@
+FAIL
+apex cost:
+
+real cost:
+
+
+
+
+Algorithm = BBMOCBS-k
+Agents = 5
+SuccessFlag = True
+------

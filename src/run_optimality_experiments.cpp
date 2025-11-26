@@ -19,8 +19,10 @@ static const std::string BINARY = "./bin/lcbs_sim";
 
 // 10 benchmark maps (same as in your existing scripts)
 static const std::vector<std::string> MAP_NAMES = {
-    "maze-32-32-2",
-    "warehouse-10-20-10-2-1"
+    // "maze-32-32-2",
+    // "warehouse-10-20-10-2-1"
+    "empty-32-32",
+    "room-32-32-4"
 };
 
 struct AlgorithmConfig {

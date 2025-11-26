@@ -1,8 +1,9 @@
-SUCCESS
-apex cost: 
-{292, 714}, 
-real cost: 
-{292, 714}, 
+FAIL
+apex cost:
+
+real cost:
+
+
 
 
 Algorithm = LCBS

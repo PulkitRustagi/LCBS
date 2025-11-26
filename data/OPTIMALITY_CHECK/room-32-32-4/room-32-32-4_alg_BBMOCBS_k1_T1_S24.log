@@ -1,10 +1,10 @@
 SUCCESS
 apex cost: 
-{74, 174}, 
+{74, 180, 204}, 
 real cost: 
-{74, 174}, 
+{74, 180, 206}, 
 
-epsilon = 1.35135e-05
+epsilon = 0.00980882
 
 
 Algorithm = BBMOCBS-k

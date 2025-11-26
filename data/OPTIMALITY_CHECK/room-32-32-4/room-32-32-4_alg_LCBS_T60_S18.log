@@ -1,8 +1,8 @@
 SUCCESS
 apex cost: 
-{103, 278}, 
+{103, 276, 278}, 
 real cost: 
-{107, 278}, 
+{107, 281, 285}, 
 
 
 Algorithm = LCBS
