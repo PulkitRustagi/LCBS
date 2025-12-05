@@ -9,15 +9,15 @@
 std::string time_lim = "120"; // seconds ==> 2 minutes
 std::string binary = "./bin/lcbs_sim";
 std::vector<std::string> map_names = {"warehouse-10-20-10-2-1",
-                                    //   "empty-32-32", 
-                                    //   "maze-32-32-2", 
-                                    //   "room-32-32-4",
-                                    //   "random-32-32-20", 
-                                    //   "room-64-64-8", 
-                                    //   "random-64-64-10",
-                                    //   "random-64-64-20", 
-                                    //   "maze-32-32-4", 
-                                    //   "empty-48-48"
+                                      "empty-32-32", 
+                                      "maze-32-32-2", 
+                                      "room-32-32-4",
+                                      "random-32-32-20", 
+                                      "room-64-64-8", 
+                                      "random-64-64-10",
+                                      "random-64-64-20", 
+                                      "maze-32-32-4", 
+                                      "empty-48-48"
                                       };
 
 std::vector<std::string> algorithms = {"LCBS", "BBMOCBS-k -k 1", "BBMOCBS-k -k 5", "BBMOCBS-k -k 10", "BBMOCBS-pex", "BBMOCBS-eps"};
